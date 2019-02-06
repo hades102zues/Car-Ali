@@ -17,7 +17,10 @@ const header = props => {
 				</h2>
 				<div className={styles.positionNav}>
 					<Navigation />
-					<div className={styles.hamburger}>
+					<div
+						className={styles.hamburger}
+						onClick={props.hamburgerClicked}
+					>
 						<div className={styles.hamburger__slice} />
 						<div className={styles.hamburger__slice} />
 						<div className={styles.hamburger__slice} />

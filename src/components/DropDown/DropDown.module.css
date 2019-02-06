@@ -1,9 +1,15 @@
 .DropDown {
-	background-color: blue;
-	padding: 0 2rem;
-}
+	background-color: #344046;
 
-.Nav {
+	position: fixed;
+	width: 100vw;
+}
+@media all and (min-width: 600px) {
+	.DropDown {
+		display: none;
+	}
+}
+/*.Nav {
 	display: flex;
 	justify-content: center;
-}
+}*/

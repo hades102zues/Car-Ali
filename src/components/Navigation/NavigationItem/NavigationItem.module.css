@@ -1,8 +1,20 @@
 .navItem {
 	font-size: 2rem;
 	font-weight: 400;
+	text-align: center;
 	color: white;
 	padding: 0 1rem;
 	margin-right: 2.75rem;
-	border: 1px solid red;
+	border-radius: 5px;
+}
+
+.navItem:hover,
+.navItem:active {
+	background-color: #b8232c;
+}
+
+@media all and (max-width: 600px) {
+	.navItem {
+		margin: 2.75rem;
+	}
 }

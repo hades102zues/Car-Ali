@@ -2,7 +2,7 @@ import React from "react";
 import NavigationItem from "../Navigation/NavigationItem/NavigationItem";
 import styles from "./DropDown.module.css";
 
-const dropDown = () => {
+const dropDown = props => {
 	const isloggedin = true;
 
 	const baseNavConfigs = [
@@ -32,12 +32,12 @@ const dropDown = () => {
 				/>
 		  ));
 
-	return (
+	return props.display ? (
 		<div className={styles.DropDown}>
 			<nav className={styles.Nav}>
 				<ul style={{ listStyle: "none" }}>{navigationItems}</ul>
 			</nav>
 		</div>
-	);
+	) : null;
 };
 export default dropDown;
