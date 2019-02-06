@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
+
 import Container from "../../UI/Container/Container";
 import Navigation from "../Navigation/Navigation";
 import { withRouter } from "react-router-dom";
@@ -16,6 +17,11 @@ const header = props => {
 				</h2>
 				<div className={styles.positionNav}>
 					<Navigation />
+					<div className={styles.hamburger}>
+						<div className={styles.hamburger__slice} />
+						<div className={styles.hamburger__slice} />
+						<div className={styles.hamburger__slice} />
+					</div>
 				</div>
 			</Container>
 		</div>

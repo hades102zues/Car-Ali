@@ -21,3 +21,22 @@
 .positionNav {
 	float: right;
 }
+
+.hamburger {
+	width: 2.1rem;
+	margin-top: 0.4rem;
+	display: none;
+}
+
+.hamburger__slice {
+	width: 100;
+	height: 0.2rem;
+	margin: 5px 0;
+	background-color: white;
+}
+
+@media all and (max-width: 600px) {
+	.hamburger {
+		display: block;
+	}
+}

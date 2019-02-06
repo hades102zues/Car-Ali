@@ -1,0 +1,9 @@
+.DropDown {
+	background-color: blue;
+	padding: 0 2rem;
+}
+
+.Nav {
+	display: flex;
+	justify-content: center;
+}

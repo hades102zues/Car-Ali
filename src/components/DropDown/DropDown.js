@@ -1,9 +1,9 @@
 import React from "react";
-import NavigationItem from "./NavigationItem/NavigationItem";
-import styles from "./Navigation.module.css";
+import NavigationItem from "../Navigation/NavigationItem/NavigationItem";
+import styles from "./DropDown.module.css";
 
-const navigation = () => {
-	const isloggedin = false;
+const dropDown = () => {
+	const isloggedin = true;
 
 	const baseNavConfigs = [
 		{ to: "/results", navName: "CATALOG" },
@@ -33,12 +33,11 @@ const navigation = () => {
 		  ));
 
 	return (
-		<nav className={styles.Nav}>
-			<ul style={{ listStyle: "none", display: "flex" }}>
-				{navigationItems}
-			</ul>
-		</nav>
+		<div className={styles.DropDown}>
+			<nav className={styles.Nav}>
+				<ul style={{ listStyle: "none" }}>{navigationItems}</ul>
+			</nav>
+		</div>
 	);
 };
-
-export default navigation;
+export default dropDown;
