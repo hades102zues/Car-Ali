@@ -5,6 +5,9 @@
   "author": "Joshua Wiggins",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "start": "nodemon server.js"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
