@@ -20,5 +20,5 @@ app.use((req, res) => {
 });
 
 db.authenticate()
-	.then(() => app.listen(3000, () => console.log("****SERVER INITIATED***")))
+	.then(() => app.listen(3001, () => console.log("****SERVER INITIATED***")))
 	.catch(err => console.log(err));
