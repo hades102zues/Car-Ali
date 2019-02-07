@@ -32,12 +32,17 @@ const dropDown = props => {
 				/>
 		  ));
 
-	return props.display ? (
-		<div className={styles.DropDown}>
+	return (
+		<div
+			className={styles.DropDown}
+			style={{
+				maxHeight: props.display ? 400 : 0
+			}}
+		>
 			<nav className={styles.Nav}>
 				<ul style={{ listStyle: "none" }}>{navigationItems}</ul>
 			</nav>
 		</div>
-	) : null;
+	);
 };
 export default dropDown;
