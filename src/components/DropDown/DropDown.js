@@ -3,7 +3,7 @@ import NavigationItem from "../Navigation/NavigationItem/NavigationItem";
 import styles from "./DropDown.module.css";
 
 const dropDown = props => {
-	const isloggedin = true;
+	const isloggedin = false;
 
 	const baseNavConfigs = [
 		{ to: "/results", navName: "CATALOG" },

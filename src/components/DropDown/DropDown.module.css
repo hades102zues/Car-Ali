@@ -9,7 +9,7 @@
 	we set overflow to hidden in order to hide the items
 	*/
 
-	transition: max-height 1s ease;
+	transition: max-height 0.75s ease-in;
 	overflow: hidden;
 }
 @media all and (min-width: 600px) {
