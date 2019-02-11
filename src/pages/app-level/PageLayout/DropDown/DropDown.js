@@ -3,7 +3,7 @@ import NavigationItem from "../Navigation/NavigationItem/NavigationItem";
 import styles from "./DropDown.module.css";
 
 const dropDown = props => {
-	const isloggedin = true;
+	const isloggedin = false;
 
 	const baseNavConfigs = [
 		{ to: "/results", navName: "CATALOG" },
@@ -32,12 +32,17 @@ const dropDown = props => {
 				/>
 		  ));
 
-	return props.display ? (
-		<div className={styles.DropDown}>
+	return (
+		<div
+			className={styles.DropDown}
+			style={{
+				maxHeight: props.display ? 400 : 0
+			}}
+		>
 			<nav className={styles.Nav}>
 				<ul style={{ listStyle: "none" }}>{navigationItems}</ul>
 			</nav>
 		</div>
-	) : null;
+	);
 };
 export default dropDown;
