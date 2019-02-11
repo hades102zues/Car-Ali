@@ -1,0 +1,69 @@
+.carCard {
+	background-color: #ccc;
+	width: 85%;
+	height: 100%;
+	position: relative;
+}
+
+.infoBox {
+	height: 45%;
+	width: 50%;
+	background-color: green;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	display: flex;
+	opacity: 0.85;
+	color: black;
+}
+
+.info {
+	background-color: yellow;
+	height: 100%;
+	width: 25%;
+	text-align: center;
+	padding: 10px 2px 0;
+}
+
+.infoHeader {
+	font-size: 1.9rem;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.infoText {
+	font-size: 1.9rem;
+}
+
+@media all and (max-width: 1400px) {
+	.infoBox {
+		width: 70%;
+	}
+}
+
+@media all and (max-width: 1000px) {
+	.infoBox {
+		width: 90%;
+	}
+
+	.infoHeader {
+		font-size: 1.6rem;
+	}
+}
+
+@media all and (max-width: 600px) {
+	.carCard {
+		width: 95%;
+		margin: 0 auto;
+	}
+
+	.infoHeader {
+		font-size: 1.2rem;
+		margin-bottom: 20px;
+	}
+	.infoBox {
+		width: 100%;
+		height: 30%;
+		left: 0;
+	}
+}

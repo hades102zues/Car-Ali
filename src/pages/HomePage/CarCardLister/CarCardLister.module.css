@@ -1,0 +1,5 @@
+.CarCardLister {
+	height: 100%;
+
+	overflow-x: scroll;
+}
