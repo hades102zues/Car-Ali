@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Header from "../Header/Header";
-import DropDown from "../DropDown/DropDown";
+import Header from "./Header/Header";
+import DropDown from "./DropDown/DropDown";
 
 class PageLayout extends Component {
 	constructor(props) {

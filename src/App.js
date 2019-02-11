@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 
-import PageLayout from "./components/PageLayout/PageLayout";
+import PageLayout from "./pages/app-level/PageLayout/PageLayout";
 
 import HomePage from "./pages/HomePage/HomePage.js";
 import LoginPage from "./pages/LoginPage/LoginPage.js";
