@@ -6,7 +6,7 @@
 
 .featuredLister {
 	margin-top: 5px;
-	height: 50rem;
+	height: 60rem;
 }
 .h4 {
 	font-size: 2rem;
@@ -16,16 +16,12 @@
 
 .lister {
 	margin-top: 5px;
-	height: 20rem;
+	height: 30rem;
 }
 
 @media all and (max-width: 1400px) {
 	.featuredLister {
-		height: 30rem;
-	}
-
-	.lister {
-		height: 15rem;
+		height: 40rem;
 	}
 }
 

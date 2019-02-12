@@ -4,6 +4,13 @@ import styles from "./CarCard.module.css";
 const carCard = props => {
 	return (
 		<div className={styles.carCard} style={{ width: props.cardWidth }}>
+			<div className={styles.imageBox}>
+				<img
+					src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+					className={styles.carImage}
+					alt="car_image"
+				/>
+			</div>
 			<div className={styles.infoBox}>
 				<div className={styles.info}>
 					<p className={styles.infoHeader}>
