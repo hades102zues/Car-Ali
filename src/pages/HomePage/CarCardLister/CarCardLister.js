@@ -10,10 +10,11 @@ class CarCardLister extends Component {
 				{
 					imageUrl:
 						"https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-					status: 1,
-					year: "",
-					condition: "",
-					verified: true
+					status: 0,
+					year: "2005",
+					condition: "3.5/5",
+					verified: true,
+					cost: "$500"
 				},
 				{
 					imageUrl:

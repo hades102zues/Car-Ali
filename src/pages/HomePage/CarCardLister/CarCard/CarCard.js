@@ -14,7 +14,9 @@ const carCard = props => {
 			<div className={styles.infoBox}>
 				<div className={styles.info}>
 					<p className={styles.infoHeader}>
-						{props.status === 1 ? "CAR FOR RENT" : "CAR FOR HIRE"}
+						{props.status === 1
+							? "CAR FOR SALE"
+							: "CAR FOR HIRE /dy"}
 					</p>
 					<p className={styles.infoText}>{props.cost}</p>
 				</div>
