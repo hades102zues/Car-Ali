@@ -3,6 +3,8 @@
 	width: 85%;
 	height: 100%;
 	position: relative;
+	margin-right: 25px;
+	flex-shrink: 0;
 }
 .imageBox {
 	height: 100%;

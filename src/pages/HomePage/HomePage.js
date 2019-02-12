@@ -9,11 +9,11 @@ const homePage = () => {
 			<Container>
 				<h2 className={styles.h2}>Featured</h2>
 				<div className={styles.featuredLister}>
-					<CarCardLister cardWidth="90%" />
+					<CarCardLister cardWidth="75vw" />
 				</div>
 				<h4 className={styles.h4}>Listings</h4>
 				<div className={styles.lister}>
-					<CarCardLister cardWidth="55%" />
+					<CarCardLister cardWidth="55vw" />
 				</div>
 			</Container>
 		</div>

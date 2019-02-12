@@ -1,5 +1,6 @@
 .CarCardLister {
 	height: 100%;
-
+	display: flex;
+	flex-shrink: 0;
 	overflow-x: scroll;
 }
