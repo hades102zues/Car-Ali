@@ -3,11 +3,15 @@ import styles from "./Result.module.css";
 const result = props => {
 	return (
 		<div className={styles.result}>
-			<div className={styles.headerStatus} />
-			<div className={styles.imageBox}>
-				<img className={styles.img} src="" alt="car" />
+			<div className={styles.headerStatus}>
+				<p className={styles.headerText}>
+					{props.status === 1 ? "CAR FOR SALE" : "CAR FOR HIRE /dy"}
+				</p>
 			</div>
-			<p className={styles.nameText}>CAR_NAME</p>
+			<div className={styles.imageBox}>
+				<img className={styles.img} src={props.imageUrl} alt="car" />
+			</div>
+			<p className={styles.nameText}>{props.name}</p>
 
 			<div className={styles.infoBox}>
 				<div className={styles.info}>
@@ -31,7 +35,9 @@ const result = props => {
 			</div>
 			<div className={styles.bidHighlight}>
 				<p className={styles.bidText}>HIGHEST BID</p>
-				<p className={styles.bidPrice}>$X.XX</p>
+				<p className={styles.bidPrice}>
+					{props.cost ? `$${props.cost}` : "$X.XX"}
+				</p>
 			</div>
 		</div>
 	);

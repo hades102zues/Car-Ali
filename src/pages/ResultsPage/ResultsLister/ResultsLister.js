@@ -14,15 +14,18 @@ class ResultsLister extends Component {
 					year: "2005",
 					condition: "3.5/5",
 					verified: true,
-					cost: "$500"
+					cost: 500,
+					passengers: 5,
+					name: "BMW M3 COUPE"
 				},
 				{
 					imageUrl:
 						"https://parkers-images.bauersecure.com/pagefiles/190699/cut-out/600x400/suzuki_swift10.jpg",
 					status: 1,
-					year: "",
+					year: "2000",
 					condition: "",
-					verified: true
+					verified: true,
+					name: "SUZUKI Swift"
 				},
 				{
 					imageUrl:
@@ -30,7 +33,8 @@ class ResultsLister extends Component {
 					status: 1,
 					year: "",
 					condition: "",
-					verified: true
+					verified: true,
+					name: "SUBARU Crosstrek"
 				},
 				{
 					imageUrl:
@@ -38,7 +42,8 @@ class ResultsLister extends Component {
 					status: 1,
 					year: "",
 					condition: "",
-					verified: true
+					verified: true,
+					name: "TOYOTA Fortuner"
 				}
 			]
 		};
@@ -55,6 +60,8 @@ class ResultsLister extends Component {
 				year={listing.year}
 				condition={listing.condition}
 				verified={listing.verified}
+				name={listing.name}
+				passengers={listing.passengers}
 			/>
 		));
 		return <div className={styles.ResultsLister}>{resultList}</div>;

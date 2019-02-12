@@ -1,7 +1,7 @@
 .result {
 	/*height: 32rem;*/
 	width: 32rem;
-	background-color: green;
+	background-color: #adacad;
 	margin-right: 35px;
 	margin-bottom: 35px;
 }
@@ -10,12 +10,19 @@
 	height: 2.5rem;
 	background-color: #344046;
 	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.headerText {
+	font-size: 1.2rem;
+	font-weight: bold;
 }
 
 .imageBox {
 	height: 17rem;
 	width: 100%;
-	background-color: yellow;
 }
 
 .img {
@@ -29,6 +36,7 @@
 	font-weight: bold;
 	color: black;
 	margin-top: 15px;
+	margin-left: 5px;
 }
 
 .infoBox {
