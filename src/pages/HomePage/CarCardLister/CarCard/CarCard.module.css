@@ -1,16 +1,14 @@
 .carCard {
 	background-color: #ccc;
-	width: 85%;
 	height: 100%;
 	position: relative;
-	margin-right: 25px;
+	margin-right: 30px;
 	flex-shrink: 0;
 }
 .imageBox {
 	height: 100%;
 	width: 100%;
 	position: absolute;
-	background-color: red;
 }
 .carImage {
 	object-fit: cover;
@@ -67,8 +65,7 @@
 
 @media all and (max-width: 600px) {
 	.carCard {
-		width: 95%;
-		margin: 0 auto;
+		margin: 0 20px;
 	}
 
 	.infoHeader {
