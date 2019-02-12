@@ -2,7 +2,10 @@ import React from "react";
 import styles from "./Result.module.css";
 const result = props => {
 	return (
-		<div className={styles.result}>
+		<div
+			className={styles.result}
+			onClick={() => props.resultClicked(props.listingId)}
+		>
 			<div className={styles.headerStatus}>
 				<p className={styles.headerText}>
 					{props.status === 1 ? "CAR FOR SALE" : "CAR FOR HIRE /dy"}

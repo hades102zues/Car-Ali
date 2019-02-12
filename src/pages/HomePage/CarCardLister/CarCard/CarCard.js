@@ -3,7 +3,11 @@ import styles from "./CarCard.module.css";
 
 const carCard = props => {
 	return (
-		<div className={styles.carCard} style={{ width: props.cardWidth }}>
+		<div
+			className={styles.carCard}
+			style={{ width: props.cardWidth }}
+			onClick={() => props.cardClicked(props.listingId)}
+		>
 			<div className={styles.imageBox}>
 				<img
 					src={props.imageUrl}

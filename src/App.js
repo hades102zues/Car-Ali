@@ -19,7 +19,7 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
             <Route path="/results" component={ResultsPage} />
             <Route path="/login" component={LoginPage} />
-            <Route path="/bid-view" component={BidDisplayPage} />
+            <Route path="/bid-view/:listingId" component={BidDisplayPage} />
             <Route path="/user/dashboard" component={DashBoardPage} />
             <Redirect to="/" />
           </Switch>

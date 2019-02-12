@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "./CarCardLister.module.css";
 import CarCard from "./CarCard/CarCard";
+import { withRouter } from "react-router-dom";
 
 class CarCardLister extends Component {
 	constructor(props) {
@@ -14,15 +15,19 @@ class CarCardLister extends Component {
 					year: "2005",
 					condition: "3.5/5",
 					verified: true,
-					cost: "$500"
+					cost: 500,
+					passengers: 5,
+					name: "BMW M3 COUPE",
+					listingId: 105
 				},
 				{
 					imageUrl:
 						"https://parkers-images.bauersecure.com/pagefiles/190699/cut-out/600x400/suzuki_swift10.jpg",
 					status: 1,
-					year: "",
+					year: "2000",
 					condition: "",
-					verified: true
+					verified: true,
+					name: "SUZUKI Swift"
 				},
 				{
 					imageUrl:
@@ -30,7 +35,8 @@ class CarCardLister extends Component {
 					status: 1,
 					year: "",
 					condition: "",
-					verified: true
+					verified: true,
+					name: "SUBARU Crosstrek"
 				},
 				{
 					imageUrl:
@@ -38,16 +44,23 @@ class CarCardLister extends Component {
 					status: 1,
 					year: "",
 					condition: "",
-					verified: true
+					verified: true,
+					name: "TOYOTA Fortuner"
 				}
 			]
 		};
 	}
 
+	cardClickHandler = listingId => {
+		const search = `/bid-view/${listingId}`;
+		this.props.history.push(search);
+	};
+
 	render() {
 		const cardList = this.state.carListing.map((listing, i) => (
 			<CarCard
 				key={i}
+				listingId={listing.listingId}
 				cardWidth={this.props.cardWidth}
 				imageUrl={listing.imageUrl}
 				status={listing.status}
@@ -55,10 +68,11 @@ class CarCardLister extends Component {
 				year={listing.year}
 				condition={listing.condition}
 				verified={listing.verified}
+				cardClicked={this.cardClickHandler}
 			/>
 		));
 		return <div className={styles.CarCardLister}>{cardList}</div>;
 	}
 }
 
-export default CarCardLister;
+export default withRouter(CarCardLister);

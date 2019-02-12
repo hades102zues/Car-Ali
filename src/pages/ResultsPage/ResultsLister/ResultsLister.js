@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "./ResultsLister.module.css";
 import Result from "./Result/Result";
+import { withRouter } from "react-router-dom";
 
 class ResultsLister extends Component {
 	constructor(props) {
@@ -16,7 +17,8 @@ class ResultsLister extends Component {
 					verified: true,
 					cost: 500,
 					passengers: 5,
-					name: "BMW M3 COUPE"
+					name: "BMW M3 COUPE",
+					listingId: 105
 				},
 				{
 					imageUrl:
@@ -49,10 +51,16 @@ class ResultsLister extends Component {
 		};
 	}
 
+	resultClickHandler = listingId => {
+		const search = `/bid-view/${listingId}`;
+		this.props.history.push(search);
+	};
+
 	render() {
 		const resultList = this.state.carListing.map((listing, i) => (
 			<Result
 				key={i}
+				listingId={listing.listingId}
 				cardWidth={this.props.cardWidth}
 				imageUrl={listing.imageUrl}
 				status={listing.status}
@@ -62,10 +70,12 @@ class ResultsLister extends Component {
 				verified={listing.verified}
 				name={listing.name}
 				passengers={listing.passengers}
+				resultClicked={this.resultClickHandler}
 			/>
 		));
+		console.log(this.props);
 		return <div className={styles.ResultsLister}>{resultList}</div>;
 	}
 }
 
-export default ResultsLister;
+export default withRouter(ResultsLister);
