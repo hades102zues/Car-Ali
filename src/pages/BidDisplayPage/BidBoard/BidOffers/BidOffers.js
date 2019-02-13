@@ -24,6 +24,18 @@ class BidOffers extends Component {
 						"https://images.pexels.com/photos/556658/pexels-photo-556658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
 					userName: "Jackson",
 					bid: 500.5
+				},
+				{
+					userImageUrl:
+						"https://images.pexels.com/photos/556658/pexels-photo-556658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+					userName: "Jackson",
+					bid: 500.5
+				},
+				{
+					userImageUrl:
+						"https://images.pexels.com/photos/556658/pexels-photo-556658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+					userName: "Jackson",
+					bid: 500.5
 				}
 			]
 		};
