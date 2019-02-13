@@ -7,7 +7,7 @@ class CarCardLister extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			carListing: [
+			carListings: [
 				{
 					imageUrl:
 						"https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
@@ -57,7 +57,7 @@ class CarCardLister extends Component {
 	};
 
 	render() {
-		const cardList = this.state.carListing.map((listing, i) => (
+		const cardList = this.state.carListings.map((listing, i) => (
 			<CarCard
 				key={i}
 				listingId={listing.listingId}

@@ -1,0 +1,13 @@
+.BidBoard {
+	width: 60%;
+	height: 55rem;
+	background-color: yellow;
+}
+
+@media all and (max-width: 750px) {
+	.BidBoard {
+		width: 95%;
+		margin: 0 auto;
+		height: 25rem;
+	}
+}

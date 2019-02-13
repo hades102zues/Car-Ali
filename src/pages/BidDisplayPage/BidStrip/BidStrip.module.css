@@ -1,0 +1,36 @@
+.BidStrip {
+	height: 34rem;
+	background-color: blue;
+	margin-left: 200px;
+	width: 35%;
+}
+
+@media all and (max-width: 1600px) {
+	.BidStrip {
+		margin-left: 100px;
+		width: 35%;
+	}
+}
+
+@media all and (max-width: 1600px) {
+	.BidStrip {
+		margin-left: 100px;
+		width: 40%;
+		height: 30rem;
+	}
+}
+
+@media all and (max-width: 750px) {
+	.BidStrip {
+		width: 60%;
+		margin: 50px auto;
+		height: 25rem;
+	}
+}
+
+@media all and (max-width: 450px) {
+	.BidStrip {
+		width: 55%;
+		height: 15rem;
+	}
+}
