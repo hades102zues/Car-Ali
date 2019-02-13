@@ -13,8 +13,10 @@ class BidStrip extends Component {
 		this.setState({ bidValue: event.target.value });
 	};
 
-	onBidSubmitHandler = () => {
+	onBidSubmitHandler = event => {
 		//make call to server
+		event.preventDefault();
+		alert("Make Post to server");
 	};
 
 	render() {
