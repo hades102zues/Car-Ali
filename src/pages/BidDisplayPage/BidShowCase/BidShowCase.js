@@ -42,7 +42,7 @@ class BidShowCase extends Component {
 					</div>
 				</div>
 				<div className={styles.namePlacer}>
-					<p className={styles.carName}>BMW M3 COUPE</p>
+					<p className={styles.carName}>{carListing.name}</p>
 				</div>
 				<div className={styles.infoBox}>
 					<div className={styles.info}>
