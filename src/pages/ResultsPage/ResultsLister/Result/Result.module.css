@@ -5,6 +5,7 @@
 	margin-right: 35px;
 	margin-bottom: 35px;
 	cursor: pointer;
+	box-shadow: 1px 1px 10px #545454;
 }
 
 .headerStatus {

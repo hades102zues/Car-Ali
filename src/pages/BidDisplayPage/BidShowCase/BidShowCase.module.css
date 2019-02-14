@@ -53,6 +53,11 @@
 }
 
 @media all and (max-width: 1400px) {
+	.BidShowCase {
+		height: 50rem;
+		/*background-color: green;*/
+	}
+
 	.infoBox {
 		height: 8.5rem;
 	}
