@@ -62,13 +62,15 @@ class LoginCard extends Component {
 				: this.state.signupConfigs;
 
 		const fieldItems = configList.map(config => (
-			<React.Fragment>
-				<ErrorMessage
-					name={config.name}
-					render={msg => (
-						<div className={styles.authmessagebox}>{msg}</div>
-					)}
-				/>
+			<div key={config.name}>
+				{this.state.authState !== "login" ? (
+					<ErrorMessage
+						name={config.name}
+						render={msg => (
+							<div className={styles.authmessagebox}>{msg}</div>
+						)}
+					/>
+				) : null}
 				<Field
 					key={config.name}
 					type={config.type}
@@ -76,7 +78,7 @@ class LoginCard extends Component {
 					placeholder={config.placeholder}
 					className={styles.field}
 				/>
-			</React.Fragment>
+			</div>
 		));
 
 		return (
@@ -111,16 +113,19 @@ const formValidation = yup.object().shape({
 	email: yup
 		.string()
 		.email("Please enter a valid email")
-		.required(),
+		.required("Please enter an email address"),
 	password: yup
 		.string()
-		.min(5, "Password Must be Atleast 5 characters")
-		.matches(
-			/^[a-z0-9]+$/,
-			"Password must container atleast one character and number"
-		)
+		.min(6, "Password Must be Atleast 6 characters")
+		// .matches(
+		// 	/^[a-zA-Z0-9]+$/,
+		// 	"Password must be made up of numbers and letters only"
+		// )
 		.required(),
-	confirmPassword: yup.string()
+	confirmPassword: yup
+		.string()
+		.oneOf([yup.ref("password"), null], "Both Passwords Must Match")
+		.required()
 });
 
 export default withFormik({
