@@ -74,7 +74,7 @@ class SignupCard extends Component {
 }
 
 const formValidation = yup.object().shape({
-	userName: yup.string().required(),
+	userName: yup.string().required("Please enter a user name"),
 	name: yup.string().required(),
 	email: yup
 		.string()

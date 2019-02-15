@@ -30,7 +30,7 @@ class LoginCard extends Component {
 		const configList = this.state.loginConfigs;
 
 		const fieldItems = configList.map(config => (
-			<div key={config.name}>
+			<React.Fragment key={config.name}>
 				<ErrorMessage
 					name={config.name}
 					render={msg => (
@@ -45,7 +45,7 @@ class LoginCard extends Component {
 					placeholder={config.placeholder}
 					className={styles.field}
 				/>
-			</div>
+			</React.Fragment>
 		));
 
 		return (
