@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styles from "./LoginCard.module.css";
-import { Form, Field, withFormik } from "formik";
-import Yup from "yup";
+import { Form, Field, withFormik, ErrorMessage } from "formik";
+import * as yup from "yup";
 
 class LoginCard extends Component {
 	constructor(props) {
@@ -24,7 +24,7 @@ class LoginCard extends Component {
 				{
 					type: "text",
 					name: "userName",
-					placeholder: "Enter A UserName"
+					placeholder: "Enter A User Name"
 				},
 				{
 					type: "text",
@@ -62,13 +62,21 @@ class LoginCard extends Component {
 				: this.state.signupConfigs;
 
 		const fieldItems = configList.map(config => (
-			<Field
-				key={config.name}
-				type={config.type}
-				name={config.name}
-				placeholder={config.placeholder}
-				className={styles.field}
-			/>
+			<React.Fragment>
+				<ErrorMessage
+					name={config.name}
+					render={msg => (
+						<div className={styles.authmessagebox}>{msg}</div>
+					)}
+				/>
+				<Field
+					key={config.name}
+					type={config.type}
+					name={config.name}
+					placeholder={config.placeholder}
+					className={styles.field}
+				/>
+			</React.Fragment>
 		));
 
 		return (
@@ -97,6 +105,24 @@ class LoginCard extends Component {
 	}
 }
 
+const formValidation = yup.object().shape({
+	userName: yup.string().required(),
+	name: yup.string().required(),
+	email: yup
+		.string()
+		.email("Please enter a valid email")
+		.required(),
+	password: yup
+		.string()
+		.min(5, "Password Must be Atleast 5 characters")
+		.matches(
+			/^[a-z0-9]+$/,
+			"Password must container atleast one character and number"
+		)
+		.required(),
+	confirmPassword: yup.string()
+});
+
 export default withFormik({
 	mapPropsToValues: () => {
 		return {
@@ -109,5 +135,6 @@ export default withFormik({
 	},
 	handleSubmit: values => {
 		console.log(values);
-	}
+	},
+	validationSchema: formValidation
 })(LoginCard);
