@@ -34,3 +34,12 @@
 	cursor: pointer;
 	text-align: center;
 }
+
+@media all and (max-width: 800px) {
+	.form {
+		width: 70%;
+	}
+	.loginText {
+		font-size: 2.5rem;
+	}
+}
