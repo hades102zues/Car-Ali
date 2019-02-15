@@ -1,14 +1,23 @@
 import React, { Component } from "react";
-import styles from "./LoginCard.module.css";
+import styles from "./SignupCard.module.css";
 import { Form, Field, withFormik, ErrorMessage } from "formik";
-import { withRouter } from "react-router-dom";
 import * as yup from "yup";
 
-class LoginCard extends Component {
+class SignupCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			loginConfigs: [
+			signupConfigs: [
+				{
+					type: "text",
+					name: "userName",
+					placeholder: "Enter A User Name"
+				},
+				{
+					type: "text",
+					name: "name",
+					placeholder: "Enter Your Full Name"
+				},
 				{
 					type: "email",
 					name: "email",
@@ -18,19 +27,21 @@ class LoginCard extends Component {
 					type: "password",
 					name: "password",
 					placeholder: "Enter Your Password"
+				},
+				{
+					type: "password",
+					name: "confirmPassword",
+					placeholder: "Confirm Your Password"
 				}
 			]
 		};
 	}
 
-	onSignUpClickHandler = () => {
-		this.props.history.push("/signup");
-	};
 	render() {
-		const configList = this.state.loginConfigs;
+		const configList = this.state.signupConfigs;
 
 		const fieldItems = configList.map(config => (
-			<div key={config.name}>
+			<React.Fragment key={config.name}>
 				<ErrorMessage
 					name={config.name}
 					render={msg => (
@@ -45,30 +56,26 @@ class LoginCard extends Component {
 					placeholder={config.placeholder}
 					className={styles.field}
 				/>
-			</div>
+			</React.Fragment>
 		));
 
 		return (
-			<div className={styles.LoginCard}>
-				<p className={styles.loginText}>Log In To Your Account</p>
+			<div className={styles.signupCard}>
+				<p className={styles.signupText}>Sign Up For Your Account</p>
 				<Form className={styles.form}>
 					{fieldItems}
 					<button type="submit" className={styles.button}>
 						Submit
 					</button>
 				</Form>
-				<p
-					className={styles.signupText}
-					onClick={this.onSignUpClickHandler}
-				>
-					New User? Sign Up Now!
-				</p>
 			</div>
 		);
 	}
 }
 
 const formValidation = yup.object().shape({
+	userName: yup.string().required(),
+	name: yup.string().required(),
 	email: yup
 		.string()
 		.email("Please enter a valid email")
@@ -80,18 +87,25 @@ const formValidation = yup.object().shape({
 		// 	/^[a-zA-Z0-9]+$/,
 		// 	"Password must be made up of numbers and letters only"
 		// )
+		.required("Please enter a password"),
+	confirmPassword: yup
+		.string()
+		.oneOf([yup.ref("password"), null], "Both Passwords Must Match")
 		.required()
 });
 
 export default withFormik({
 	mapPropsToValues: () => {
 		return {
+			userName: "",
+			name: "",
 			email: "",
-			password: ""
+			password: "",
+			confirmPassword: ""
 		};
 	},
 	handleSubmit: values => {
 		console.log(values);
 	},
 	validationSchema: formValidation
-})(withRouter(LoginCard));
+})(SignupCard);
