@@ -1,0 +1,29 @@
+.loginPage {
+	display: flex;
+	justify-content: center;
+	padding-top: 50px;
+}
+.loginCardplacer {
+	width: 50%;
+	padding: 15px 10px;
+	background-color: #fafafa;
+	box-shadow: 1px 1px 10px #545454;
+}
+
+@media all and (max-width: 1200px) {
+	.loginCardplacer {
+		width: 65%;
+	}
+}
+
+@media all and (max-width: 900px) {
+	.loginCardplacer {
+		width: 75%;
+	}
+}
+
+@media all and (max-width: 600px) {
+	.loginCardplacer {
+		width: 90%;
+	}
+}
