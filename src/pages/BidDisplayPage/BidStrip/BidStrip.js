@@ -29,7 +29,10 @@ class BidStrip extends Component {
 							: "$0"}
 					</p>
 				</div>
-				<form onSubmit={this.onBidSubmitHandler}>
+				<form
+					onSubmit={this.onBidSubmitHandler}
+					className={styles.form}
+				>
 					<div className={styles.bidBox}>
 						<input
 							type="number"
