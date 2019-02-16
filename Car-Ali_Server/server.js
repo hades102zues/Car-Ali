@@ -1,13 +1,16 @@
 const express = require("express");
 const app = express();
+
 const port = process.env.PORT || 3001;
+
 const bodyParser = require("body-parser");
-
-const mode = "development";
-const dbConfig = require("./knexfile")[mode];
-const knex = require("knex")(dbConfig);
-
 app.use(bodyParser.json());
+
+const knex = require("./knexfile").knex;
+
+const loginRoutes = require("./routes/login");
+
+app.use(loginRoutes);
 
 app.use((error, req, res, next) => {
 	console.log("Error Caught!");

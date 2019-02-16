@@ -1,6 +1,7 @@
 const path = require("path");
+const mode = "development";
 
-module.exports = {
+const configurations = {
 	development: {
 		client: "pg",
 		connection: {
@@ -27,3 +28,5 @@ module.exports = {
 		}
 	}
 };
+
+exports.knex = require("knex")(configurations[mode]);
