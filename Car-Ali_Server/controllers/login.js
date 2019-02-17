@@ -12,14 +12,15 @@ exports.postSignup = (req, res) => {
 			hasher
 				.hash(req.body.password, 10)
 				.then(hash => {
+					delete req.body.password;
 					req.hash = hash;
+
 					User.create(req, res, result => {
 						//clear crucial data
 						delete req.hash;
-						delete req.body.password;
 
 						//create the token
-						const token = jwt.sign(req.body, secret);
+						const token = jwt.sign(result, secret);
 						//send back a token
 						res.status(200).json({
 							message: "New User Created!",

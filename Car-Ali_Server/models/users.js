@@ -11,7 +11,8 @@ module.exports = class User {
 				password: req.hash,
 				profile_img: req.body.profile_img
 			})
-			.then(result => cb(result))
+			.returning(["id", "username", "name", "email"])
+			.then(result => cb(result[0]))
 			.catch(err =>
 				res.status(400).json({ message: "error creating user" })
 			);
