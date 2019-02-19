@@ -40,13 +40,13 @@ exports.postSignup = (req, res) => {
 };
 
 exports.postLogin = (req, res) => {
-	User.getOne(req, user => {
+	User.getOne(req, res, user => {
 		if (user) {
 			//user exists
-			//test to make sure password is correct
 
+			//test to make sure password is correct
 			hasher.compare(req.body.password, user.password).then(result => {
-				//boolean
+				//get rid of importants
 				delete req.body.password;
 				delete user.password;
 
@@ -58,18 +58,18 @@ exports.postLogin = (req, res) => {
 
 					//send back a token
 					res.status(200).json({
-						message: "User is now logged in!",
+						message: "User Is Now Logged In!",
 						token: token
 					});
 				} else {
 					res.status(400).json({
-						message: "Invalid email or password"
+						message: "Invalid Email or Password"
 					});
 				}
 			});
 		} else {
 			//user doesnt exist
-			res.status(400).json({ message: "Invalid email or password" });
+			res.status(400).json({ message: "Invalid Email or Password" });
 		}
 	});
 };
