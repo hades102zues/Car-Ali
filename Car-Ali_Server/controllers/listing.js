@@ -5,8 +5,23 @@ exports.postListing = (req, res) => {
 		res.status(200).json({ message: "New Listing Succesfully Created" });
 	});
 };
-exports.patchListing = (req, res) => {};
-exports.deleteListing = (req, res) => {};
-exports.getUserListings = (req, res) => {};
-exports.getListings = (req, res) => {};
-exports.specificLisitings = (req, res) => {};
+exports.getUserListings = (req, res) => {
+	Listing.getAllUserListings(req, res, results => {
+		res.status(200).json({ message: "Listings", results });
+	});
+};
+
+exports.getUserListing = (req, res) => {
+	Listing.getOneUserListing(req, res, result => {
+		res.status(200).json({ message: "Listing", result });
+	});
+};
+
+// exports.specificLisitings = (req, res) => {
+
+// };
+
+// exports.patchListing = (req, res) => {};
+// exports.deleteListing = (req, res) => {};
+
+// exports.getListings = (req, res) => {};
