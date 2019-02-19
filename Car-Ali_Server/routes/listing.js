@@ -9,16 +9,19 @@ router.post("/lisiting", listingControllers.postListing);
 router.get("/listings-user", listingControllers.getUserListings);
 
 //get a specific user listing in db
-router.get("/listings-user", listingControllers.getUserListing);
+router.get("/listing-user", listingControllers.getUserListing);
 
-// //get some results for front page will use the Get all
-// router.get("/listing-results", listingControllers.getListings);
+//update a listing
+router.patch("/lisiting-user", listingControllers.patchListing);
 
-// //update a listing
-// router.patch("/lisiting/:listingId", listingControllers.patchListing);
+//delete a listing
+router.delete("/lisiting-user", listingControllers.deleteListing);
 
-// //delete a listing
-// router.delete("/lisiting/:listingId", listingControllers.deleteListing);
+//get some front page results
+router.get("/featured-results", listingControllers.getFeaturedListings);
+
+//get some front page results
+router.get("/some-results", listingControllers.getSomeListings);
 
 // //get some search results
 // //get carname as params and in body expect a status of 1 or 0

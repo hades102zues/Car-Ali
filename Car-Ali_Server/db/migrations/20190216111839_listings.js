@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
 		table.increments();
 		table.integer("status").notNull();
 		table.integer("year").notNull();
-		table.integer("condition").notNull();
+		table.float("condition").notNull();
 		table.integer("verified").notNull();
 		table.float("cost").notNull();
 		table.integer("passengers").notNull();

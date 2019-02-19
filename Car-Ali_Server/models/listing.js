@@ -14,7 +14,12 @@ module.exports = class Listing {
 				user_id: req.decoded.id
 			})
 			.then(result => cb(result))
-			.catch(err => console.log("Error while inserting listing ", err));
+			.catch(err => {
+				res.status(400).json({
+					message: "Creating Listing Failed",
+					err
+				});
+			});
 	}
 
 	static getAllUserListings(req, res, cb) {
@@ -22,9 +27,9 @@ module.exports = class Listing {
 			.select()
 			.where({ user_id: req.decoded.id })
 			.then(results => cb(results))
-			.catch(err =>
-				console.log("Error while getting all User Listings", err)
-			);
+			.catch(err => {
+				res.status(400).json({ message: "Failed To Get User Data" });
+			});
 	}
 
 	static getOneUserListing(req, res, cb) {
@@ -32,22 +37,58 @@ module.exports = class Listing {
 			.select()
 			.where({ user_id: req.decoded.id, id: req.body.listingId })
 			.then(results => cb(results))
-			.catch(err => console.log("Error while getting User Listing", err));
+			.catch(err => {
+				res.status(400).json({ message: "Failed To Get User Data" });
+			});
 	}
 
+	static updateOne(req, res, cb) {
+		knex("listings")
+			.update({
+				status: req.body.status,
+				year: req.body.year,
+				condition: req.body.condition,
+				verified: req.body.verified,
+				cost: req.body.cost,
+				passengers: req.body.cost,
+				car_name: req.body.carName
+			})
+			.where({ id: req.body.listingId })
+			.returning("id")
+			.then(result => cb(result))
+			.catch(err => {
+				res.status(400).json({ message: "Failed To Update Item" });
+			});
+	}
+
+	static deleteOne(req, res, cb) {
+		knex("listings")
+			.del()
+			.where({ id: req.body.listingId })
+			.then(result => cb(result))
+			.catch(err => {
+				res.status(400).json({ message: "Request Failed" });
+			});
+	}
+
+	//---
 	static getOne(req, res, cb) {
 		knex("listings")
 			.select()
 			.where({ id: req.body.listingId })
 			.first()
 			.then(result => cb(result))
-			.catch(err => console.log("Error while getting Listing", err));
+			.catch(err =>
+				res.status(400).json({ message: "Error Fetching Data", err })
+			);
 	}
 
 	static getAll(req, res, cb) {
 		knex("listings")
 			.select()
 			.then(results => cb(results))
-			.catch(err => console.log("Error while getting Listings", err));
+			.catch(err =>
+				res.status(400).json({ message: "Error Fetching Data", err })
+			);
 	}
 };
