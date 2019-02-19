@@ -6,11 +6,15 @@ const port = process.env.PORT || 3001;
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
-const knex = require("./knexfile").knex;
-
 const loginRoutes = require("./routes/login");
+const listingRoutes = require("./routes/listing");
+const authWare = require("./utility/authWare");
 
 app.use(loginRoutes);
+
+app.use(authWare);
+
+app.use(listingRoutes);
 
 app.use((error, req, res, next) => {
 	console.log("Error Caught!");
