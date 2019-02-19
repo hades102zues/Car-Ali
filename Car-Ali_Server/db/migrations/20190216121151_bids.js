@@ -14,6 +14,7 @@ exports.up = function(knex, Promise) {
 			.inTable("listings")
 			.onDelete("CASCADE")
 			.index();
+		table.timestamps(true, true);
 	});
 };
 

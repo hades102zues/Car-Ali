@@ -1,4 +1,4 @@
-const knex = require("../knexfile").knex;
+const knex = require("../knexfile");
 
 module.exports = class User {
 	//create

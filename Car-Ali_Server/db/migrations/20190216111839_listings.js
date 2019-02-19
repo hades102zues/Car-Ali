@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
 		table.integer("status").notNull();
 		table.integer("year").notNull();
 		table.integer("condition").notNull();
-		table.boolean("verified").notNull();
+		table.integer("verified").notNull();
 		table.float("cost").notNull();
 		table.integer("passengers").notNull();
 		table.string("car_name").notNull();
@@ -15,7 +15,7 @@ exports.up = function(knex, Promise) {
 			.inTable("users")
 			.onDelete("CASCADE")
 			.index();
-		table.timestamp(true, true);
+		table.timestamps(true, true);
 	});
 };
 
