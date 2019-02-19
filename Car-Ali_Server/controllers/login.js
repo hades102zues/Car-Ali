@@ -12,15 +12,17 @@ exports.postSignup = (req, res) => {
 			hasher
 				.hash(req.body.password, 10)
 				.then(hash => {
+					//remove crucial data
 					delete req.body.password;
-					req.hash = hash;
 
+					req.hash = hash;
 					User.create(req, res, result => {
 						//clear crucial data
 						delete req.hash;
 
-						//create the token
+						//create the token with user details
 						const token = jwt.sign(result, secret);
+
 						//send back a token
 						res.status(200).json({
 							message: "New User Created!",
@@ -37,4 +39,37 @@ exports.postSignup = (req, res) => {
 	});
 };
 
-exports.postLogin = (req, res) => {};
+exports.postLogin = (req, res) => {
+	User.getOne(req, user => {
+		if (user) {
+			//user exists
+			//test to make sure password is correct
+
+			hasher.compare(req.body.password, user.password).then(result => {
+				//boolean
+				delete req.body.password;
+				delete user.password;
+
+				if (result) {
+					//match was succesful
+
+					//then create a token
+					const token = jwt.sign(user, secret);
+
+					//send back a token
+					res.status(200).json({
+						message: "User is now logged in!",
+						token: token
+					});
+				} else {
+					res.status(400).json({
+						message: "Invalid email or password"
+					});
+				}
+			});
+		} else {
+			//user doesnt exist
+			res.status(400).json({ message: "Invalid email or password" });
+		}
+	});
+};
