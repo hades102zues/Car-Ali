@@ -1,5 +1,6 @@
 const Listing = require("../models/Listing");
 
+//---guarded
 exports.postListing = (req, res) => {
 	Listing.create(req, res, () => {
 		res.status(200).json({ message: "New Listing Succesfully Created" });
@@ -11,7 +12,7 @@ exports.getUserListings = (req, res) => {
 	});
 };
 
-exports.getUserListing = (req, res) => {
+exports.postUserListing = (req, res) => {
 	Listing.getOneUserListing(req, res, result => {
 		res.status(200).json({ message: "Listing", result });
 	});
@@ -27,6 +28,8 @@ exports.deleteListing = (req, res) => {
 		res.status(200).json({ message: "Item Deleted" });
 	});
 };
+
+//---unguarded
 
 exports.getFeaturedListings = (req, res) => {
 	Listing.getAll(req, res, results => {
@@ -58,10 +61,26 @@ exports.getSomeListings = (req, res) => {
 	});
 };
 
-// exports.specificLisitings = (req, res) => {
+exports.getCatalog = (req, res) => {
+	Listing.getAll(req, res, results => {
+		res.status(200).json({
+			message: "Catalog",
+			results
+		});
+	});
+};
 
-// };
+exports.postCatalogQuery = (req, res) => {
+	Listing.getAll(req, res, results => {
+		const newResults = results.filter(listing =>
+			listing.car_name
+				.toLowerCase()
+				.includes(req.body.queryName.toLowerCase())
+		);
 
-// exports.deleteListing = (req, res) => {};
-
-// exports.getListings = (req, res) => {};
+		res.status(200).json({
+			message: "Search Results",
+			results: newResults
+		});
+	});
+};

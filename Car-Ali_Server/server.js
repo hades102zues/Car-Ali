@@ -7,14 +7,15 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 const loginRoutes = require("./routes/login");
-const listingRoutes = require("./routes/listing");
+const guardedlistingRoutes = require("./routes/guardedListing");
+const unguardedlistingRoutes = require("./routes/unguardedListing");
 const authWare = require("./utility/authWare");
 
 app.use(loginRoutes);
+app.use(unguardedlistingRoutes);
 
 app.use(authWare);
-
-app.use(listingRoutes);
+app.use(guardedlistingRoutes);
 
 app.use((error, req, res, next) => {
 	console.log("Error Caught!");
