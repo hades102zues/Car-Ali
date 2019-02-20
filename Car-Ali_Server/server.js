@@ -3,47 +3,23 @@ const path = require("path");
 const app = express();
 const port = process.env.PORT || 3001;
 const bodyParser = require("body-parser");
-const multer = require("multer");
 
 const loginRoutes = require("./routes/login");
 const guardedlistingRoutes = require("./routes/guardedListing");
 const unguardedlistingRoutes = require("./routes/unguardedListing");
 const authWare = require("./utility/authWare");
+const upload = require("./multerfile");
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-//This portion prepares the files to be stored at a specific directory.
-//It determines what names the uploaded files will be stored under
-//and keeps the extension defined on the upload
-const fileStorage = multer.diskStorage({
-	destination: (req, file, cb) => {
-		//this is how we specify where to store the files
-		//create these directories before hand!!!
-		cb(null, path.join(__dirname, "public", "uploads"));
-	},
-
-	filename: (req, file, cb) => {
-		//this specifies what names our uploaded files will be stored under
-		//.original name holds the name+extension of the uploaded file
-		cb(null, Date.now() + "_" + file.originalname);
-	}
-});
-
-const filterFunction = (req, file, cb) => {
-	file.mimetype === ".jpg" ||
-	file.mimetype === ".jpeg" ||
-	file.mimetype === "png"
-		? cb(null, true)
-		: cb(null, false);
-};
-
-const upload = multer({ storage: fileStorage, fileFilter: filterFunction });
-
 app.use(loginRoutes);
 app.use(unguardedlistingRoutes);
 app.use(authWare);
-app.use(guardedlistingRoutes);
+
+//the file is now accessible through req.file.
+//single takes the name of the field alloted to the file, uploaded in the form
+app.use(upload.single("car_img"), guardedlistingRoutes);
 
 app.use((error, req, res, next) => {
 	console.log("Error Caught!");
