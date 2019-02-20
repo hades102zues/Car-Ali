@@ -2,11 +2,9 @@ const Listing = require("../models/Listing");
 
 //---guarded
 exports.postListing = (req, res) => {
-	console.log("file, ", req.file);
-	console.log("other stuff ", req.body);
-	// Listing.create(req, res, () => {
-	// 	res.status(200).json({ message: "New Listing Succesfully Created" });
-	// });
+	Listing.create(req, res, () => {
+		res.status(200).json({ message: "New Listing Succesfully Created" });
+	});
 };
 exports.getUserListings = (req, res) => {
 	Listing.getAllUserListings(req, res, results => {

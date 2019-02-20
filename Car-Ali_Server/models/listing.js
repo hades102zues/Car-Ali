@@ -10,7 +10,8 @@ module.exports = class Listing {
 				verified: req.body.verified,
 				cost: req.body.cost,
 				passengers: req.body.cost,
-				car_name: req.body.carName,
+				car_name: req.body.carName.toUpperCase(),
+				image_path: req.file.path,
 				user_id: req.decoded.id
 			})
 			.then(result => cb(result))
@@ -51,7 +52,7 @@ module.exports = class Listing {
 				verified: req.body.verified,
 				cost: req.body.cost,
 				passengers: req.body.cost,
-				car_name: req.body.carName
+				car_name: req.body.carName.toUpperCase()
 			})
 			.where({ id: req.body.listingId })
 			.returning("id")

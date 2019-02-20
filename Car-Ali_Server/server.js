@@ -9,9 +9,11 @@ const guardedlistingRoutes = require("./routes/guardedListing");
 const unguardedlistingRoutes = require("./routes/unguardedListing");
 const authWare = require("./utility/authWare");
 const upload = require("./multerfile");
+const cors = require("cors");
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cors());
 
 app.use(loginRoutes);
 app.use(unguardedlistingRoutes);
