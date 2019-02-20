@@ -1,19 +1,19 @@
 const express = require("express");
+const path = require("path");
 const app = express();
-
 const port = process.env.PORT || 3001;
-
 const bodyParser = require("body-parser");
-app.use(bodyParser.json());
 
 const loginRoutes = require("./routes/login");
 const guardedlistingRoutes = require("./routes/guardedListing");
 const unguardedlistingRoutes = require("./routes/unguardedListing");
 const authWare = require("./utility/authWare");
 
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use(loginRoutes);
 app.use(unguardedlistingRoutes);
-
 app.use(authWare);
 app.use(guardedlistingRoutes);
 
