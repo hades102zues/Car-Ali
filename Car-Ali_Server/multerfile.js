@@ -29,7 +29,7 @@ const filterFunction = (req, file, cb) => {
 	} else {
 		cb(null, false); //reject the file
 
-		//if something goes wrong then throw this error
+		//then throw this error
 		//which will be nexted to express
 		cb(new Error("File Was Not Accepted"));
 	}
