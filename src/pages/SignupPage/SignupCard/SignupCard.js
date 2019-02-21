@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import styles from "./SignupCard.module.css";
+import { connect } from "react-redux";
 import { Form, Field, withFormik, ErrorMessage } from "formik";
 import * as yup from "yup";
+
+import * as actions from "../../../redux/actions/index";
 
 class SignupCard extends Component {
 	constructor(props) {
@@ -33,12 +36,19 @@ class SignupCard extends Component {
 					name: "confirmPassword",
 					placeholder: "Confirm Your Password"
 				}
-			]
+			],
+			serverAuthMessage: null //____
 		};
 	}
 
 	render() {
 		const configList = this.state.signupConfigs;
+
+		const serverAuthMessageBox = this.state.serverAuthMessage ? (
+			<div className={styles.authmessagebox}>
+				{this.state.serverAuthMessage}
+			</div>
+		) : null; //____
 
 		const fieldItems = configList.map(config => (
 			<React.Fragment key={config.name}>
@@ -62,6 +72,7 @@ class SignupCard extends Component {
 		return (
 			<div className={styles.signupCard}>
 				<p className={styles.signupText}>Sign Up For Your Account</p>
+				{serverAuthMessageBox}
 				<Form className={styles.form}>
 					{fieldItems}
 					<button type="submit" className={styles.button}>
@@ -94,7 +105,13 @@ const formValidation = yup.object().shape({
 		.required()
 });
 
-export default withFormik({
+const mapDispatchToProps = dispatch => {
+	return {
+		signUp: user => dispatch(actions.signupUser(user))
+	};
+};
+
+const formikComp = withFormik({
 	mapPropsToValues: () => {
 		return {
 			userName: "",
@@ -104,8 +121,19 @@ export default withFormik({
 			confirmPassword: ""
 		};
 	},
-	handleSubmit: values => {
-		console.log(values);
+	handleSubmit: (values, { props }) => {
+		const userData = {
+			username: values.userName,
+			name: values.name,
+			email: values.email,
+			password: values.password
+		};
+		props.signUp(userData);
 	},
 	validationSchema: formValidation
 })(SignupCard);
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(formikComp);

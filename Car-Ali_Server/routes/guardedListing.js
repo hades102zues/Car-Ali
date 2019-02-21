@@ -9,7 +9,7 @@ router.post("/lisiting", listingControllers.postListing);
 router.get("/listings-user", listingControllers.getUserListings);
 
 //get a specific user listing in db
-router.post("/listing-user", listingControllers.postUserListing);
+router.get("/listing-user", listingControllers.getUserListing);
 
 //update a listing
 router.patch("/lisiting-user", listingControllers.patchListing);

@@ -5,7 +5,7 @@ exports.up = (knex, Promise) => {
 		table.string("name").notNull();
 		table.string("email").notNull();
 		table.string("password").notNull();
-		table.text("profile_img").notNull();
+		table.text("profile_img");
 		table.timestamps(true, true);
 	});
 };

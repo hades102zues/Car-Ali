@@ -12,7 +12,7 @@ exports.getUserListings = (req, res) => {
 	});
 };
 
-exports.postUserListing = (req, res) => {
+exports.getUserListing = (req, res) => {
 	Listing.getOneUserListing(req, res, result => {
 		res.status(200).json({ message: "Listing", result });
 	});
