@@ -42,6 +42,7 @@ module.exports = class Bid {
 		knex("bids")
 			.select()
 			.where({ listing_id: req.params.listingId })
+			.orderBy("bid", "desc")
 			.then(results => cb(results))
 			.catch(err =>
 				res.status(400).json({ message: "Bid Retrieval Failed", err })

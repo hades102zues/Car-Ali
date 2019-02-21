@@ -5,7 +5,7 @@ const bidControllers = require("../controllers/bid");
 //gets all of a user's bids
 router.get("/user-bids", bidControllers.getUserBids);
 
-//get the top 10 highes bids for a listing
+//get the bids for a listing in desc
 router.get("/listing-bids/:listingId", bidControllers.getListingBids);
 
 //allows user to post a bid
