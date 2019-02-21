@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styles from "./SignupCard.module.css";
 import { connect } from "react-redux";
 import { Form, Field, withFormik, ErrorMessage } from "formik";
+import { Redirect } from "react-router-dom";
 import * as yup from "yup";
 
 import * as actions from "../../../redux/actions/index";
@@ -37,19 +38,18 @@ class SignupCard extends Component {
 					placeholder: "Confirm Your Password"
 				}
 			],
-			serverAuthMessage: null //____
+			serverAuthMessage: null
 		};
 	}
 
 	render() {
 		const configList = this.state.signupConfigs;
 
-		const serverAuthMessageBox = this.state.serverAuthMessage ? (
+		const serverAuthMessageBox = this.props.serverAuthMessage ? (
 			<div className={styles.authmessagebox}>
-				{this.state.serverAuthMessage}
+				{this.props.serverAuthMessage}
 			</div>
-		) : null; //____
-
+		) : null;
 		const fieldItems = configList.map(config => (
 			<React.Fragment key={config.name}>
 				<ErrorMessage
@@ -69,8 +69,11 @@ class SignupCard extends Component {
 			</React.Fragment>
 		));
 
+		const redirect = this.props.authToken ? <Redirect to="/" /> : null;
+
 		return (
 			<div className={styles.signupCard}>
+				{redirect}
 				<p className={styles.signupText}>Sign Up For Your Account</p>
 				{serverAuthMessageBox}
 				<Form className={styles.form}>
@@ -107,7 +110,14 @@ const formValidation = yup.object().shape({
 
 const mapDispatchToProps = dispatch => {
 	return {
-		signUp: user => dispatch(actions.signupUser(user))
+		signUp: (user, should) => dispatch(actions.signupUser(user, should))
+	};
+};
+
+const mapStateToProps = state => {
+	return {
+		serverAuthMessage: state.login.serverAuthMessage,
+		authToken: state.login.token
 	};
 };
 
@@ -128,12 +138,12 @@ const formikComp = withFormik({
 			email: values.email,
 			password: values.password
 		};
-		props.signUp(userData);
+		props.signUp(userData, true);
 	},
 	validationSchema: formValidation
 })(SignupCard);
 
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(formikComp);

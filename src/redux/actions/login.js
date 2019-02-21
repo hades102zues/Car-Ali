@@ -4,27 +4,39 @@ import {
 	SIGN_UP_USER
 } from "./actionTypes";
 
-export const storeTokenRedux = token => {
+export const storeTokenRedux = (token, message) => {
 	return {
 		type: STORE_TOKEN_REDUX,
-		payload: token
+		token,
+		message
 	};
 };
 
 const storeTokenBrowser = token => {
 	//store locally
+	localStorage.setItem("userToken", token);
 };
 
-export const signupUser = userData => dispatch => {
-	fetch("/signup", {
+const getTokenBrowser = () => {
+	return localStorage.getItem("userToken");
+};
+
+const removeTokenBrowser = () => {
+	localStorage.removeItem("userToken");
+};
+
+export const signupUser = (userData, shouldSignUp) => dispatch => {
+	const path = shouldSignUp ? "/signup" : "/login";
+
+	fetch(path, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(userData)
 	})
 		.then(res => res.json())
 		.then(data => {
-			dispatch(storeTokenBrowser(data.token));
-			dispatch(storeTokenRedux(data.token));
+			storeTokenBrowser(data.token);
+			dispatch(storeTokenRedux(data.token, data.message));
 		})
 		.catch(err => console.log("signupuser", err));
 };
