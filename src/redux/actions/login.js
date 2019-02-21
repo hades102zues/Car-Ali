@@ -1,19 +1,6 @@
-import {
-	STORE_TOKEN_REDUX,
-	STORE_TOKEN_BROWSER,
-	SIGN_UP_USER
-} from "./actionTypes";
-
-export const storeTokenRedux = (token, message) => {
-	return {
-		type: STORE_TOKEN_REDUX,
-		token,
-		message
-	};
-};
+import { STORE_TOKEN_REDUX } from "./actionTypes";
 
 const storeTokenBrowser = token => {
-	//store locally
 	localStorage.setItem("userToken", token);
 };
 
@@ -23,6 +10,25 @@ const getTokenBrowser = () => {
 
 const removeTokenBrowser = () => {
 	localStorage.removeItem("userToken");
+};
+
+export const clearLogin = () => {
+	removeTokenBrowser();
+	return storeTokenRedux(null, null);
+};
+
+export const storeTokenRedux = (token, message) => {
+	return {
+		type: STORE_TOKEN_REDUX,
+		token,
+		message
+	};
+};
+
+export const grabTokenFromLocal = () => {
+	const token = getTokenBrowser();
+	const message = "Token Retrieved From Local";
+	return storeTokenRedux(token, message);
 };
 
 export const signupUser = (userData, shouldSignUp) => dispatch => {

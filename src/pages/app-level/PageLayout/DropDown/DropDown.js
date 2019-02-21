@@ -4,8 +4,6 @@ import styles from "./DropDown.module.css";
 import { connect } from "react-redux";
 
 const dropDown = props => {
-	const isloggedin = false;
-
 	const baseNavConfigs = [
 		{ to: "/results", navName: "CATALOG" },
 		{ to: "/login", navName: "LOGIN" }

@@ -1,1 +1,1 @@
-export { signupUser } from "./login";
+export { signupUser, grabTokenFromLocal, clearLogin } from "./login";
