@@ -1,10 +1,9 @@
 import React from "react";
 import NavigationItem from "./NavigationItem/NavigationItem";
 import styles from "./Navigation.module.css";
+import { connect } from "react-redux";
 
-const navigation = () => {
-	const isloggedin = false;
-
+const navigation = props => {
 	const baseNavConfigs = [
 		{ to: "/results", navName: "CATALOG" },
 		{ to: "/login", navName: "LOGIN" }
@@ -16,7 +15,7 @@ const navigation = () => {
 		{ to: "/logout", navName: "LOGOUT" }
 	];
 
-	const navigationItems = isloggedin
+	const navigationItems = props.userToken
 		? loggedInConfigs.map(config => (
 				<NavigationItem
 					key={config.navName}
@@ -41,4 +40,10 @@ const navigation = () => {
 	);
 };
 
-export default navigation;
+const mapStateToProps = state => {
+	return {
+		userToken: state.login.token
+	};
+};
+
+export default connect(mapStateToProps)(navigation);

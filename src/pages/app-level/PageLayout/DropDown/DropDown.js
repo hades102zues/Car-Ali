@@ -1,6 +1,7 @@
 import React from "react";
 import NavigationItem from "../Navigation/NavigationItem/NavigationItem";
 import styles from "./DropDown.module.css";
+import { connect } from "react-redux";
 
 const dropDown = props => {
 	const isloggedin = false;
@@ -16,7 +17,7 @@ const dropDown = props => {
 		{ to: "/logout", navName: "LOGOUT" }
 	];
 
-	const navigationItems = isloggedin
+	const navigationItems = props.userToken
 		? loggedInConfigs.map(config => (
 				<NavigationItem
 					key={config.navName}
@@ -45,4 +46,11 @@ const dropDown = props => {
 		</div>
 	);
 };
-export default dropDown;
+
+const mapStateToProps = state => {
+	return {
+		userToken: state.login.token
+	};
+};
+
+export default connect(mapStateToProps)(dropDown);
