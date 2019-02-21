@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import styles from "./SignupCard.module.css";
+import { connect } from "react-redux";
 import { Form, Field, withFormik, ErrorMessage } from "formik";
+import { Redirect } from "react-router-dom";
 import * as yup from "yup";
+
+import * as actions from "../../../redux/actions/index";
 
 class SignupCard extends Component {
 	constructor(props) {
@@ -33,13 +37,19 @@ class SignupCard extends Component {
 					name: "confirmPassword",
 					placeholder: "Confirm Your Password"
 				}
-			]
+			],
+			serverAuthMessage: null
 		};
 	}
 
 	render() {
 		const configList = this.state.signupConfigs;
 
+		const serverAuthMessageBox = this.props.serverAuthMessage ? (
+			<div className={styles.authmessagebox}>
+				{this.props.serverAuthMessage}
+			</div>
+		) : null;
 		const fieldItems = configList.map(config => (
 			<React.Fragment key={config.name}>
 				<ErrorMessage
@@ -59,9 +69,13 @@ class SignupCard extends Component {
 			</React.Fragment>
 		));
 
+		const redirect = this.props.authToken ? <Redirect to="/" /> : null;
+
 		return (
 			<div className={styles.signupCard}>
+				{redirect}
 				<p className={styles.signupText}>Sign Up For Your Account</p>
+				{serverAuthMessageBox}
 				<Form className={styles.form}>
 					{fieldItems}
 					<button type="submit" className={styles.button}>
@@ -94,7 +108,20 @@ const formValidation = yup.object().shape({
 		.required()
 });
 
-export default withFormik({
+const mapDispatchToProps = dispatch => {
+	return {
+		signUp: (user, should) => dispatch(actions.signupUser(user, should))
+	};
+};
+
+const mapStateToProps = state => {
+	return {
+		serverAuthMessage: state.login.serverAuthMessage,
+		authToken: state.login.token
+	};
+};
+
+const formikComp = withFormik({
 	mapPropsToValues: () => {
 		return {
 			userName: "",
@@ -104,8 +131,19 @@ export default withFormik({
 			confirmPassword: ""
 		};
 	},
-	handleSubmit: values => {
-		console.log(values);
+	handleSubmit: (values, { props }) => {
+		const userData = {
+			username: values.userName,
+			name: values.name,
+			email: values.email,
+			password: values.password
+		};
+		props.signUp(userData, true);
 	},
 	validationSchema: formValidation
 })(SignupCard);
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(formikComp);
