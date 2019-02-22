@@ -28,7 +28,7 @@ export const storeTokenRedux = (token, message) => {
 export const grabTokenFromLocal = () => {
 	const token = getTokenBrowser();
 	const message = "Token Retrieved From Local";
-	return storeTokenRedux(token, message);
+	return storeTokenRedux(token, null);
 };
 
 export const signupUser = (userData, shouldSignUp) => dispatch => {
