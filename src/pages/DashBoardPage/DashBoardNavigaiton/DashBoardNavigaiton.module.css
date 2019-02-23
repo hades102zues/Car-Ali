@@ -17,10 +17,6 @@
 	object-fit: cover;
 }
 
-.navigationItems {
-	background-color: red;
-	height: 150px;
-}
 @media all and (max-width: 900px) {
 	.dashBoardNavigaiton {
 		width: 20%;

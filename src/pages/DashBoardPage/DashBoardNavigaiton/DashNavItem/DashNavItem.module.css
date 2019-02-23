@@ -1,11 +1,11 @@
 .dashNavItem {
-	background-color: blue;
 	height: 50px;
+	background-color: #344046;
 }
 
 .fixer {
 	height: 100%;
-	background-color: #344046;
+
 	display: flex;
 	justify-content: center;
 	align-items: center;

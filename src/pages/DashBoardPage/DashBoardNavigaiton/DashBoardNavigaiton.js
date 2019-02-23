@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import styles from "./DashBoardNavigaiton.module.css";
 import DashNavItem from "./DashNavItem/DashNavItem";
+import { withRouter } from "react-router-dom";
 
-const dashBoardNavigaiton = () => {
+const dashBoardNavigaiton = props => {
 	const navItemList = [
-		{ navName: "PROFILE", to: "/" },
-		{ navName: "LISTINGS", to: "/" },
-		{ navName: "BIDS", to: "/" }
+		{ navName: "PROFILE", to: `${props.match.path}` },
+		{ navName: "LISTINGS", to: `${props.match.path}/user-listings` },
+		{ navName: "BIDS", to: `${props.match.path}/user-bids` }
 	];
 	const navItems = navItemList.map(config => (
 		<DashNavItem
 			key={config.navName}
 			navName={config.navName}
+			exact
 			to={config.to}
 		/>
 	));
@@ -25,4 +27,4 @@ const dashBoardNavigaiton = () => {
 	);
 };
 
-export default dashBoardNavigaiton;
+export default withRouter(dashBoardNavigaiton);
