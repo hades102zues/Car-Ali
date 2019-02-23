@@ -1,6 +1,11 @@
 .dashNavItem {
 	height: 50px;
 	background-color: #344046;
+	border-bottom: 2px solid white;
+}
+
+.dashNavItem:hover {
+	background-color: #b8232c;
 }
 
 .fixer {
@@ -11,9 +16,20 @@
 	align-items: center;
 }
 .active {
-	height: 100%;
 	background-color: #b8232c;
 }
 .navName {
 	font-size: 2.5rem;
+}
+
+@media all and (max-width: 700px) {
+	.navName {
+		font-size: 1.5rem;
+	}
+}
+
+@media all and (max-width: 450px) {
+	.navName {
+		font-size: 1.2rem;
+	}
 }

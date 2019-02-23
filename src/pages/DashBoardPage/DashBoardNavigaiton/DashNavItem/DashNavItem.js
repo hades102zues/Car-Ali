@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import styles from "./DashNavItem.module.css";
 import { NavLink } from "react-router-dom";
-
+import { withRouter } from "react-router-dom";
 const dashNavItem = props => {
-	console.log(props.to);
 	return (
 		<div className={styles.dashNavItem}>
 			<NavLink exact to={props.to} activeClassName={styles.active}>
@@ -15,4 +14,4 @@ const dashNavItem = props => {
 	);
 };
 
-export default dashNavItem;
+export default withRouter(dashNavItem);
