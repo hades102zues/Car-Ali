@@ -27,7 +27,7 @@ export const storeTokenRedux = (token, message) => {
 
 export const grabTokenFromLocal = () => {
 	const token = getTokenBrowser();
-	const message = "Token Retrieved From Local";
+
 	return storeTokenRedux(token, null);
 };
 
