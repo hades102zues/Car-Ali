@@ -11,7 +11,7 @@ class Lister extends Component {
 	render() {
 		return (
 			<div className={styles.Lister}>
-				<ListItem />
+				<ListItem carName="BMW Couper" cost={50} />
 			</div>
 		);
 	}

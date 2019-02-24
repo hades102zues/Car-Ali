@@ -1,4 +1,4 @@
-.listItem {
+.bidItem {
 	display: flex;
 	background-color: #eceff1;
 	padding: 6px 25px;
@@ -31,14 +31,6 @@
 	width: 4rem;
 	border-radius: 5px;
 	background-color: blue;
-	margin-right: 10px;
-	cursor: pointer;
-}
-.editButton {
-	height: 3rem;
-	width: 4rem;
-	border-radius: 5px;
-	background-color: green;
 	margin-right: 10px;
 	cursor: pointer;
 }

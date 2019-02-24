@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./ListItem.module.css";
+import styles from "./BidItem.module.css";
 
-const listItem = props => {
+const bidItem = props => {
 	return (
-		<div className={styles.listItem}>
+		<div className={styles.bidItem}>
 			<div className={styles.left}>
 				<p className={styles.carName}>{props.carName}</p>
 				<p className={styles.cost}>{`$${props.cost}`}</p>
@@ -12,13 +12,6 @@ const listItem = props => {
 				<div className={styles.viewButton}>
 					<img
 						src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABfAAAAXwBsrqMZwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFOSURBVEiJ7ZS7SgNBFIb/DQQ0Jhh7LwF9glgn2Nv6CHkACxubiI15CCPYewMhT5DeoFUKBbdJYSemsshnkTOwxLObRFCbHDgszH+by85Ii/rvirJAoCzpQNK+pKqkkkEfkh4kdSRdRVH0PlcqkAdOgCHTawg0gfys5ltAbwbjyeoBm9PMN4AXR3wN1IA16zpw4/CegfU08wLw5IgOMyZ05PAfgYJHbnszT5xJC3i1bmF7Dtw5uvNJ8zowcog1w1sOdmbYnoONgjYEdB0SwIrhAwcbGFZK0XYlKWcZOWVX5n3J0gTjY0k4pKp9Lx0sjO06GOaZGIELZ5n3hoVDfrNOHnLH0bW/R0IR6DvkZtoeAKcOvw8U0wQ7QOyIwkVbApYZ/3W3Di8GttMmFEIq/PypqGSaJ0J+77GbCCoDDca3NQY+rWMbawCrcxsv6k/rCxV6IRC0rOvzAAAAAElFTkSuQmCC"
-						className={styles.img}
-						alt="edit_icon"
-					/>
-				</div>
-				<div className={styles.editButton}>
-					<img
-						src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAA7QAAAO0Bq2+TWQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACLSURBVCiRvc29DgFREIDRux6AUmNZso1GVB55X0LjIaiI+CkUGh3dUbiJEOHGhq+ZZJIzE8I/QoEKg2/wzK0dylTUxzjObTxQpcAhDjhhghxTdD/BAhv3jhilfCyx99gK+TdwWQd2fgabWD/BNXpvYcTFE1yg/RG+wPNUmEXcCCG04u6cZdkl6WudrtX+Cgh15bwaAAAAAElFTkSuQmCC"
 						className={styles.img}
 						alt="edit_icon"
 					/>
@@ -35,4 +28,4 @@ const listItem = props => {
 	);
 };
 
-export default listItem;
+export default bidItem;
