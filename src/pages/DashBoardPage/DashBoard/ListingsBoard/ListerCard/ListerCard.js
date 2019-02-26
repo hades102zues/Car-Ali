@@ -10,7 +10,11 @@ class ListerCard extends Component {
 				{
 					type: "select",
 					name: "status",
-					placeholder: "Enter Your Email Address"
+					placeholder: "Enter Your Email Address",
+					optionsConfigs: [
+						{ value: "1", text: "Sale" },
+						{ value: "0", text: "Hire" }
+					]
 				},
 				{
 					type: "text",
@@ -30,9 +34,13 @@ class ListerCard extends Component {
 					placeholder: "Rate The Car's Condition out of 5"
 				},
 				{
-					type: "text",
+					type: "select",
 					name: "verified",
-					placeholder: "Is the car verified?"
+					placeholder: "Is the car verified?",
+					optionsConfigs: [
+						{ value: "1", text: "Yes" },
+						{ value: "0", text: "No" }
+					]
 				},
 				{
 					type: "number",
@@ -55,14 +63,18 @@ class ListerCard extends Component {
 		const fieldItems = configList.map(config => {
 			let field = null;
 			if (config.type === "select") {
+				const options = config.optionsConfigs.map((option, i) => (
+					<option key={config.name + i} value={option.value}>
+						{option.text}
+					</option>
+				));
 				field = (
 					<Field
 						component={config.type}
 						name={config.name}
 						className={styles.fieldSelect}
 					>
-						<option value="1">Sale</option>
-						<option value="0">Hire</option>
+						{options}
 					</Field>
 				);
 			} else if (config.type === "number") {
@@ -101,7 +113,7 @@ class ListerCard extends Component {
 			);
 		});
 
-		return (
+		const render = this.props.show ? (
 			<div className={styles.ListerCard}>
 				<Form>
 					{fieldItems}
@@ -115,8 +127,17 @@ class ListerCard extends Component {
 						Submit
 					</button>
 				</Form>
+				<button
+					className={styles.button}
+					style={{ backgroundColor: "green" }}
+					onClick={this.props.hide}
+				>
+					Close
+				</button>
 			</div>
-		);
+		) : null;
+
+		return render;
 	}
 }
 
@@ -127,7 +148,7 @@ const formikComp = withFormik({
 			carName: "",
 			year: "",
 			condition: "",
-			verified: "",
+			verified: 1,
 			cost: "",
 			passengers: "",
 			imageUrl: ""

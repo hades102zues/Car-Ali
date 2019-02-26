@@ -6,7 +6,7 @@
 	padding: 20px 10px;
 	transform: translateX(-50%);
 	width: 40%;
-	background-color: red;
+	background-color: #eceff1;
 }
 
 .authmessagebox {
@@ -47,8 +47,14 @@
 	cursor: pointer;
 	height: 35px;
 	color: white;
-	margin: 0 auto;
+	margin: 10px auto;
 	display: block;
 	font-weight: bold;
 	width: 30%;
+}
+
+@media all and (max-width: 800px) {
+	.ListerCard {
+		width: 95%;
+	}
 }
