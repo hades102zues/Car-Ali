@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./ListingsBoard.module.css";
 import Lister from "./Lister/Lister";
+import ListerCard from "./ListerCard/ListerCard";
 
 const listingsBoard = () => {
 	return (
@@ -21,6 +22,7 @@ const listingsBoard = () => {
 				</div>
 			</div>
 			<Lister />
+			<ListerCard />
 		</div>
 	);
 };

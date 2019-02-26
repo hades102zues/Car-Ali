@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styles from "./DashBoardNavigaiton.module.css";
 import DashNavItem from "./DashNavItem/DashNavItem";
 import { withRouter } from "react-router-dom";
