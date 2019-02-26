@@ -4,12 +4,12 @@ module.exports = class Listing {
 	static create(req, res, cb) {
 		knex("listings")
 			.insert({
-				status: req.body.status,
-				year: req.body.year,
-				condition: req.body.condition,
-				verified: req.body.verified,
-				cost: req.body.cost,
-				passengers: req.body.cost,
+				status: parseInt(req.body.status),
+				year: parseInt(req.body.year),
+				condition: parseFloat(req.body.condition),
+				verified: parseInt(req.body.verified),
+				cost: parseFloat(req.body.cost),
+				passengers: parseInt(req.body.passengers),
 				car_name: req.body.carName.toUpperCase(),
 				image_path: req.file.path,
 				user_id: req.decoded.id

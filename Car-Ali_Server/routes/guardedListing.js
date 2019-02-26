@@ -3,7 +3,7 @@ const router = express.Router();
 const listingControllers = require("../controllers/listing");
 
 //upload a listing
-router.post("/lisiting", listingControllers.postListing);
+router.post("/listing", listingControllers.postListing);
 
 //get all user listings in db
 router.get("/listings-user", listingControllers.getUserListings);

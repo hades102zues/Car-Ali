@@ -19,12 +19,12 @@ app.use(cors());
 app.use(loginRoutes);
 app.use(unguardedlistingRoutes);
 
-app.use(authWare);
+// app.use(authWare);
 app.use(bidRoutes);
 
 //the file is now accessible through req.file.
 //single takes the name of the field alloted to the file, uploaded in the form
-app.use(upload.single("car_img"), guardedlistingRoutes);
+app.use(upload.single("image"), guardedlistingRoutes);
 
 app.use((error, req, res, next) => {
 	console.log("Error Caught!");

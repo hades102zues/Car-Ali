@@ -38,8 +38,8 @@ class ListerCard extends Component {
 					name: "verified",
 					placeholder: "Is the car verified?",
 					optionsConfigs: [
-						{ value: "1", text: "Yes" },
-						{ value: "0", text: "No" }
+						{ value: "1", text: "Car is verified" },
+						{ value: "0", text: "Car is not verified" }
 					]
 				},
 				{
@@ -120,7 +120,13 @@ class ListerCard extends Component {
 					<input
 						type="file"
 						name="imageUrl"
-						onChange={this.props.handleChange}
+						onChange={event => {
+							//necessary inorder to capture the FILE object
+							this.props.setFieldValue(
+								"image",
+								event.currentTarget.files[0]
+							);
+						}}
 						value={this.props.values.email}
 					/>
 					<button type="submit" className={styles.button}>
@@ -150,12 +156,20 @@ const formikComp = withFormik({
 			condition: "",
 			verified: 1,
 			cost: "",
-			passengers: "",
-			imageUrl: ""
+			passengers: ""
 		};
 	},
 	handleSubmit: (values, { props }) => {
-		console.log(values);
+		//to submit we need to use formdata
+		let formData = new FormData();
+		for (let item in values) formData.append(item, values[item]);
+
+		fetch("/listing", {
+			method: "POST",
+			body: formData
+		})
+			.then(res => console.log(res))
+			.then(err => console.log(err));
 	}
 })(ListerCard);
 
