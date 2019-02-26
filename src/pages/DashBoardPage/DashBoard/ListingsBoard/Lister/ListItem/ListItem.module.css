@@ -56,3 +56,21 @@
 	width: 100%;
 	object-fit: contain;
 }
+
+@media all and (max-width: 650px) {
+	.carName {
+		font-size: 1.2rem;
+	}
+	.cost {
+		font-size: 1.2rem;
+	}
+	.viewButton {
+		width: 2.4rem;
+	}
+	.editButton {
+		width: 2.4rem;
+	}
+	.deleteButton {
+		width: 2.4rem;
+	}
+}
