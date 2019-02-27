@@ -48,7 +48,15 @@
 	width: 50%;
 	position: relative;
 }
+
 .number {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+.push {
+	position: absolute;
+	right: 50%;
+	top: 0;
 	font-size: 1.5rem;
 	font-weight: bold;
 }
@@ -67,3 +75,26 @@
 	font-weight: bold;
 }
 
+@media all and (max-width: 1100px) {
+	.left {
+		width: 70%;
+	}
+	.modify {
+		width: 30%;
+	}
+}
+
+@media all and (max-width: 650px) {
+	.number {
+		font-size: 1.2rem;
+	}
+	.push {
+		font-size: 1.2rem;
+	}
+	.car {
+		font-size: 1.2rem;
+	}
+	.modify {
+		font-size: 1.2rem;
+	}
+}

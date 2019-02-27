@@ -45,6 +45,20 @@ class listingsBoard extends Component {
 			.catch(err => alert("Error Retrieving Listing Data"));
 	};
 
+	onDeleteItemHandler = listId => {
+		fetch("/listing-user", {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + this.props.authToken
+			},
+			method: "DELETE",
+			body: JSON.stringify({ listingId: listId })
+		})
+			.then(res => this.fetchData())
+
+			.catch(err => alert("Error Retrieving Listing Data"));
+	};
+
 	render() {
 		return (
 			<div className={styles.listtingBoard}>
@@ -60,13 +74,17 @@ class listingsBoard extends Component {
 				<div className={styles.listingHeading}>
 					<div className={styles.left}>
 						<p className={styles.number}>Car</p>
-						<p className={styles.car}>Highest Bid</p>
+						<p className={styles.push}>List Status</p>
+						<p className={styles.car}>Starting Value</p>
 					</div>
 					<div className={styles.modify}>
 						<p className={styles.modify}>Modify</p>
 					</div>
 				</div>
-				<Lister listItems={this.state.listItems} />
+				<Lister
+					listItems={this.state.listItems}
+					deleteItem={this.onDeleteItemHandler}
+				/>
 				<ListerCard
 					didUpload={this.uploadDidHappen}
 					show={this.state.showListCard}

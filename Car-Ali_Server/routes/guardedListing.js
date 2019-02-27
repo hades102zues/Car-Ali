@@ -12,9 +12,9 @@ router.get("/listings-user", listingControllers.getUserListings);
 router.get("/listing-user", listingControllers.getUserListing);
 
 //update a listing
-router.patch("/lisiting-user", listingControllers.patchListing);
+router.patch("/listing-user", listingControllers.patchListing);
 
 //delete a listing
-router.delete("/lisiting-user", listingControllers.deleteListing);
+router.delete("/listing-user", listingControllers.deleteListing);
 
 module.exports = router;
