@@ -64,11 +64,26 @@ class ListerCard extends Component {
 		const fieldItems = configList.map(config => {
 			let field = null;
 			if (config.type === "select") {
-				const options = config.optionsConfigs.map((option, i) => (
-					<option key={config.name + i} value={option.value}>
-						{option.text}
-					</option>
-				));
+				const options = config.optionsConfigs.map((option, i) => {
+					let selected = "";
+
+					if (this.props.isEditMode) {
+						selected =
+							option.value === this.props.editPackage[config.name]
+								? "selected"
+								: "";
+					}
+
+					return (
+						<option
+							key={config.name + i}
+							value={option.value}
+							selected={selected}
+						>
+							{option.text}
+						</option>
+					);
+				});
 				field = (
 					<Field
 						component={config.type}
@@ -114,7 +129,7 @@ class ListerCard extends Component {
 			);
 		});
 
-		const render = this.props.show ? (
+		const render = ( //this.props.show ? (
 			<div className={styles.ListerCard}>
 				<Form>
 					{fieldItems}
@@ -138,7 +153,6 @@ class ListerCard extends Component {
 					className={styles.button}
 					style={{ backgroundColor: "green" }}
 					onClick={() => {
-						console.log(this.props.isEditMode);
 						if (this.props.isEditMode) {
 							this.props.afterEdit();
 						} else {
@@ -149,41 +163,59 @@ class ListerCard extends Component {
 					Close
 				</button>
 			</div>
-		) : null;
-
+		);
 		return render;
 	}
 }
 
 const formikComp = withFormik({
 	mapPropsToValues: props => {
-		console.log("got props", props);
-
-		return {
-			status: props.idEditMode ? props.editPackage.status : 1,
-			carName: props.idEditMode ? props.editPackage.carName : "",
-			year: props.idEditMode ? props.editPackage.year : "",
-			condition: props.idEditMode ? props.editPackage.condition : "",
-			verified: props.idEditMode ? props.editPackage.verified : 1,
-			cost: props.idEditMode ? props.editPackage.cost : "",
-			passengers: props.idEditMode ? props.editPackage.passengers : ""
-		};
+		console.log(props);
+		let itemToTreturn = {};
+		if (props.isEditMode) {
+			itemToTreturn = {
+				status: props.editPackage.status,
+				carName: props.editPackage.carName,
+				year: props.editPackage.year,
+				condition: props.editPackage.condition,
+				verified: props.editPackage.verified,
+				cost: props.editPackage.cost,
+				passengers: props.editPackage.passengers
+			};
+		} else {
+			itemToTreturn = {
+				status: 1,
+				carName: "",
+				year: "",
+				condition: "",
+				verified: 1,
+				cost: "",
+				passengers: ""
+			};
+		}
+		return itemToTreturn;
 	},
 	handleSubmit: (values, { props }) => {
 		//to submit we need to use formdata
 		let formData = new FormData();
 		for (let item in values) formData.append(item, values[item]);
 
-		fetch("/listing", {
+		const url = props.isEditMode ? "/listing-user" : "/listing";
+		const method = props.isEditMode ? "PATCH" : "POST";
+		if (props.isEditMode) {
+			formData.append("listingId", props.editPackage.id);
+		}
+		fetch(url, {
 			headers: { Authorization: "Bearer " + props.authToken },
-			method: "POST",
+			method: method,
 			body: formData
 		})
 			.then(res => {
 				props.hide();
 				props.didUpload();
+				console.log(res);
 			})
-			.catch(err => alert("Error Uploading Listing"));
+			.catch(err => alert("Error Uploading Listing", err));
 	}
 })(ListerCard);
 

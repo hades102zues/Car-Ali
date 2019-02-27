@@ -92,6 +92,17 @@ class listingsBoard extends Component {
 	};
 
 	render() {
+		const listCard = this.state.showListCard ? (
+			<ListerCard
+				didUpload={this.uploadDidHappen}
+				show={this.state.showListCard}
+				hide={this.onListCardPopUp}
+				afterEdit={this.onListCardPopUpEdit}
+				editPackage={this.state.editPackage}
+				isEditMode={this.state.isEditMode}
+				resetEditMode={this.flipEditMode}
+			/>
+		) : null;
 		return (
 			<div className={styles.listtingBoard}>
 				<div className={styles.boardHeading}>
@@ -118,15 +129,7 @@ class listingsBoard extends Component {
 					deleteItem={this.onDeleteItemHandler}
 					show={this.onListCardPopUpEdit}
 				/>
-				<ListerCard
-					didUpload={this.uploadDidHappen}
-					show={this.state.showListCard}
-					hide={this.onListCardPopUp}
-					afterEdit={this.onListCardPopUpEdit}
-					editPackage={this.state.editPackage}
-					isEditMode={this.state.isEditMode}
-					resetEditMode={this.flipEditMode}
-				/>
+				{listCard}
 			</div>
 		);
 	}
