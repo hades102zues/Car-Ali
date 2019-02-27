@@ -19,7 +19,7 @@ app.use(cors());
 app.use(loginRoutes);
 app.use(unguardedlistingRoutes);
 
-// app.use(authWare);
+app.use(authWare);
 app.use(bidRoutes);
 
 //the file is now accessible through req.file.

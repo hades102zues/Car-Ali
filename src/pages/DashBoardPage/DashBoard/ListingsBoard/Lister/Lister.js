@@ -9,11 +9,11 @@ class Lister extends Component {
 	}
 
 	render() {
-		return (
-			<div className={styles.Lister}>
-				<ListItem carName="BMW Couper" cost={50} />
-			</div>
-		);
+		const listItems = this.props.listItems.map(item => (
+			<ListItem key={item.id} carName={item.car_name} cost={item.cost} />
+		));
+
+		return <div className={styles.Lister}>{listItems}</div>;
 	}
 }
 

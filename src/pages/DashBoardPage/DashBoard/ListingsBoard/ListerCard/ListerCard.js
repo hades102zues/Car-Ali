@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./ListerCard.module.css";
+import { connect } from "react-redux";
 import { Form, Field, withFormik, ErrorMessage } from "formik";
 
 class ListerCard extends Component {
@@ -165,12 +166,21 @@ const formikComp = withFormik({
 		for (let item in values) formData.append(item, values[item]);
 
 		fetch("/listing", {
+			headers: { Authorization: "Bearer " + props.authToken },
 			method: "POST",
 			body: formData
 		})
-			.then(res => console.log(res))
-			.then(err => console.log(err));
+			.then(res => {
+				props.hide();
+				props.didUpload();
+			})
+			.catch(err => alert("Error Uploading Listing"));
 	}
 })(ListerCard);
 
-export default formikComp;
+const mapStateToProps = state => {
+	return {
+		authToken: state.login.token
+	};
+};
+export default connect(mapStateToProps)(formikComp);
