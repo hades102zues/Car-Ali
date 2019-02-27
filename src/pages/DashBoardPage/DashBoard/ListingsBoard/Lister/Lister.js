@@ -11,12 +11,18 @@ class Lister extends Component {
 	render() {
 		const listItems = this.props.listItems.map(item => (
 			<ListItem
-				status={item.status}
-				id={item.id}
-				key={item.id}
 				carName={item.car_name}
+				condition={item.condition}
 				cost={item.cost}
+				userId={item.user_id}
+				id={item.id}
+				passengers={item.passengers}
+				status={item.status}
+				year={item.year}
+				verified={item.verified}
+				key={item.id}
 				deleteItem={this.props.deleteItem}
+				showListingCard={this.props.show}
 			/>
 		));
 

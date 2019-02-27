@@ -137,7 +137,14 @@ class ListerCard extends Component {
 				<button
 					className={styles.button}
 					style={{ backgroundColor: "green" }}
-					onClick={this.props.hide}
+					onClick={() => {
+						console.log(this.props.isEditMode);
+						if (this.props.isEditMode) {
+							this.props.afterEdit();
+						} else {
+							this.props.hide();
+						}
+					}}
 				>
 					Close
 				</button>
@@ -149,15 +156,17 @@ class ListerCard extends Component {
 }
 
 const formikComp = withFormik({
-	mapPropsToValues: () => {
+	mapPropsToValues: props => {
+		console.log("got props", props);
+
 		return {
-			status: 1,
-			carName: "",
-			year: "",
-			condition: "",
-			verified: 1,
-			cost: "",
-			passengers: ""
+			status: props.idEditMode ? props.editPackage.status : 1,
+			carName: props.idEditMode ? props.editPackage.carName : "",
+			year: props.idEditMode ? props.editPackage.year : "",
+			condition: props.idEditMode ? props.editPackage.condition : "",
+			verified: props.idEditMode ? props.editPackage.verified : 1,
+			cost: props.idEditMode ? props.editPackage.cost : "",
+			passengers: props.idEditMode ? props.editPackage.passengers : ""
 		};
 	},
 	handleSubmit: (values, { props }) => {

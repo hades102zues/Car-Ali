@@ -10,7 +10,9 @@ class listingsBoard extends Component {
 		this.state = {
 			showListCard: false,
 			listItems: [],
-			initiateReloop: 1
+			initiateReloop: 1,
+			editPackage: null,
+			isEditMode: false
 		};
 	}
 
@@ -26,11 +28,41 @@ class listingsBoard extends Component {
 	}
 
 	onListCardPopUp = () => {
-		this.setState(currState =>
-			this.setState({ showListCard: !currState.showListCard })
-		);
+		this.toggleListCard();
 	};
 
+	onListCardPopUpEdit = editPackage => {
+		//if i already went for an edit
+		if (this.state.editPackage !== null) {
+			//flip the edit mode to false
+			this.flipEditMode(() => {
+				//clear the edit package and then close the popup
+				this.setState({ editPackage: null }, () => {
+					this.toggleListCard();
+				});
+			});
+			return;
+		}
+
+		//now edit mode
+
+		this.setState({ editPackage }, () => {
+			this.flipEditMode(this.toggleListCard);
+		});
+	};
+
+	toggleListCard = cb => {
+		this.setState(currState => {
+			return { showListCard: !currState.showListCard };
+		}, cb);
+	};
+
+	flipEditMode = cb => {
+		this.setState(
+			currState => this.setState({ isEditMode: !currState.isEditMode }),
+			cb
+		);
+	};
 	uploadDidHappen = () => {
 		this.fetchData();
 	};
@@ -84,11 +116,16 @@ class listingsBoard extends Component {
 				<Lister
 					listItems={this.state.listItems}
 					deleteItem={this.onDeleteItemHandler}
+					show={this.onListCardPopUpEdit}
 				/>
 				<ListerCard
 					didUpload={this.uploadDidHappen}
 					show={this.state.showListCard}
 					hide={this.onListCardPopUp}
+					afterEdit={this.onListCardPopUpEdit}
+					editPackage={this.state.editPackage}
+					isEditMode={this.state.isEditMode}
+					resetEditMode={this.flipEditMode}
 				/>
 			</div>
 		);
