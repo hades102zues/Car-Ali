@@ -72,10 +72,14 @@ exports.getCatalog = (req, res) => {
 
 exports.postCatalogQuery = (req, res) => {
 	Listing.getAll(req, res, results => {
-		const newResults = results.filter(listing =>
-			listing.car_name
-				.toLowerCase()
-				.includes(req.body.queryName.toLowerCase())
+		const newResults = results.filter(
+			listing =>
+				listing.car_name
+					.toLowerCase()
+					.includes(
+						req.body.searchResults.inputQuery.toLowerCase()
+					) &&
+				listing.status === parseInt(req.body.searchResults.indexQuery)
 		);
 
 		res.status(200).json({

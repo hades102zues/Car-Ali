@@ -47,13 +47,66 @@ class ResultsLister extends Component {
 					verified: true,
 					name: "TOYOTA Fortuner"
 				}
-			]
+			],
+			initiateReloop: 1,
+			searchResults: null,
+			searchMode: false
 		};
 	}
 
 	resultClickHandler = listingId => {
 		const search = `/bid-view/${listingId}`;
 		this.props.history.push(search);
+	};
+
+	componentDidMount() {
+		this.setState({ initiateReloop: 2 });
+	}
+
+	componentDidUpdate() {
+		const queryString = this.props.location.search; //is a string
+		//if no search query was done then queryString will be ''
+		if (queryString.length) {
+			//inputQuery represents the car name
+			//indexQuery represents the listing status
+
+			const searchItems = new URLSearchParams(queryString);
+			let searchResults = {};
+			//p is an array of strings with index 0 being the key and index 1 being the value
+			for (let p of searchItems) {
+				searchResults[p[0]] = p[1];
+			}
+
+			if (this.state.searchResults === null)
+				this.setState(
+					{ searchResults, searchMode: true },
+					this.fetchData
+				);
+		}
+		// else {
+
+		// 	this.setState({ searchResults: null, searchMode: false });
+		// }
+	}
+
+	fetchData = () => {
+		if (this.state.searchMode) {
+			fetch("/catalog-query", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					searchResults: this.state.searchResults
+				})
+			})
+				.then(res => res.json())
+				.then(data => console.log("Got results", data.results))
+				.catch(err => alert("Error getting Search Results with query"));
+		} else {
+			fetch("/catalog")
+				.then(res => res.json())
+				.then(data => console.log("Got results", data.results))
+				.catch(err => alert("Error getting Search Results"));
+		}
 	};
 
 	render() {

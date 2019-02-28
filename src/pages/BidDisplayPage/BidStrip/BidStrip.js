@@ -28,7 +28,7 @@ class BidStrip extends Component {
 		})
 			.then(res => res.json())
 			.then(data => {
-				alert("Bid Submitted");
+				// alert("Bid Submitted");
 				this.props.uploaded();
 			})
 			.catch(err => alert("Error Submitting Bid"));

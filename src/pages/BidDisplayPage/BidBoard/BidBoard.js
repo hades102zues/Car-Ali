@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styles from "./BidBoard.module.css";
 import BidOffers from "./BidOffers/BidOffers";
-import { connect } from "react-redux";
 
 class BidBoard extends Component {
 	constructor(props) {
