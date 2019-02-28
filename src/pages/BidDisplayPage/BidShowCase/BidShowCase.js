@@ -22,10 +22,7 @@ class BidShowCase extends Component {
 		};
 	}
 
-	componentDidMount() {
-		//get id from url
-		//perform a fetch for data
-	}
+	componentDidMount() {}
 
 	render() {
 		const { carListings } = this.state;

@@ -22,3 +22,7 @@ class Funct extends Component {
 }
 
 export default Funct
+
+console.log(queryString);
+		const params = new URLSearchParams(queryString);
+		console.log(params);
