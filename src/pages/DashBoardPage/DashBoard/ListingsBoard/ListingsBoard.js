@@ -44,8 +44,7 @@ class listingsBoard extends Component {
 			return;
 		}
 
-		//now edit mode
-
+		//now in edit mode
 		this.setState({ editPackage }, () => {
 			this.flipEditMode(this.toggleListCard);
 		});

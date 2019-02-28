@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styles from "./BidShowCase.module.css";
-
+import { connect } from "react-redux";
 class BidShowCase extends Component {
 	constructor(props) {
 		super(props);
@@ -81,4 +81,9 @@ class BidShowCase extends Component {
 	}
 }
 
-export default BidShowCase;
+const mapStateToProps = state => {
+	return {
+		authToken: state.login.token
+	};
+};
+export default connect(mapStateToProps)(BidShowCase);
