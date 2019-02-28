@@ -77,7 +77,21 @@ class ResultsLister extends Component {
 				searchResults[p[0]] = p[1];
 			}
 
+			//if results have not already been set then go ahead and fetch
 			if (this.state.searchResults === null)
+				return this.setState(
+					{ searchResults, searchMode: true },
+					this.fetchData
+				);
+			//if the user got to the page by search searchMode and hit the search button
+			//with some new options
+			if (
+				this.state.searchMode &&
+				(searchResults.inputQuery !==
+					this.state.searchResults.inputQuery ||
+					searchResults.indexQuery !==
+						this.state.searchResults.indexQuery)
+			)
 				this.setState(
 					{ searchResults, searchMode: true },
 					this.fetchData
