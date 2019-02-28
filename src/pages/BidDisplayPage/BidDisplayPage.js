@@ -29,8 +29,8 @@ class BidDisplay extends Component {
 				<BidShowCase />
 				<Container>
 					<div className={styles.bidPlacer}>
-						<BidBoard listingId={this.state.listingId} />
-						<BidStrip listingId={this.state.listingId} />
+						<BidBoard />
+						<BidStrip />
 					</div>
 				</Container>
 			</div>

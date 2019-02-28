@@ -13,9 +13,14 @@ const upload = require("./multerfile");
 const cors = require("cors");
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "public")));
+
 app.use(cors());
 
+//to serve files it MUST be an app.use
+//example to get an image.
+//http://localhost:3001/images/<..>.jpg
+//we DONT make use of none of this ../public/uploads/
+app.use("/images", express.static(path.join(__dirname, "public", "uploads")));
 app.use(loginRoutes);
 app.use(unguardedlistingRoutes);
 

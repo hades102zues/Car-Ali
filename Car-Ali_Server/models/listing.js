@@ -11,7 +11,7 @@ module.exports = class Listing {
 				cost: parseFloat(req.body.cost),
 				passengers: parseInt(req.body.passengers),
 				car_name: req.body.carName.toUpperCase(),
-				image_path: req.file.path,
+				image_path: req.file.filename,
 				user_id: req.decoded.id
 			})
 			.then(result => cb(result))
@@ -36,10 +36,11 @@ module.exports = class Listing {
 	static getOneUserListing(req, res, cb) {
 		knex("listings")
 			.select()
-			.where({ user_id: req.decoded.id, id: req.body.listingId })
+			// .where({ user_id: req.decoded.id, id: req.body.listingId })
+			.where({ id: req.body.listingId })
 			.then(results => cb(results))
 			.catch(err => {
-				res.status(400).json({ message: "Failed To Get User Data" });
+				res.status(400).json({ message: "Failed To Get Listing Data" });
 			});
 	}
 

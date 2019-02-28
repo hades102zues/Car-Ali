@@ -8,8 +8,8 @@ router.post("/listing", listingControllers.postListing);
 //get all user listings in db
 router.get("/listings-user", listingControllers.getUserListings);
 
-//get a specific user listing in db
-router.get("/listing-user", listingControllers.getUserListing);
+// //get a specific user listing in db
+// router.get("/listing-user", listingControllers.getUserListing);
 
 //update a listing
 router.patch("/listing-user", listingControllers.patchListing);
