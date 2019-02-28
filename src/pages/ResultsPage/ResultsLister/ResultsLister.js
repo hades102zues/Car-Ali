@@ -82,11 +82,12 @@ class ResultsLister extends Component {
 					{ searchResults, searchMode: true },
 					this.fetchData
 				);
+		} else {
+			if (this.state.searchResults === null) {
+				this.fetchData();
+			}
+			//this.setState({ searchResults: null, searchMode: false });
 		}
-		// else {
-
-		// 	this.setState({ searchResults: null, searchMode: false });
-		// }
 	}
 
 	fetchData = () => {
@@ -99,13 +100,13 @@ class ResultsLister extends Component {
 				})
 			})
 				.then(res => res.json())
-				.then(data => console.log("Got results", data.results))
-				.catch(err => alert("Error getting Search Results with query"));
+				.then(data => this.setState({ carListings: data.results }))
+				.catch(err => console.log(err));
 		} else {
 			fetch("/catalog")
 				.then(res => res.json())
-				.then(data => console.log("Got results", data.results))
-				.catch(err => alert("Error getting Search Results"));
+				.then(data => this.setState({ carListings: data.results }))
+				.catch(err => console.log(err));
 		}
 	};
 
@@ -113,20 +114,19 @@ class ResultsLister extends Component {
 		const resultList = this.state.carListings.map((listing, i) => (
 			<Result
 				key={i}
-				listingId={listing.listingId}
+				listingId={listing.id}
 				cardWidth={this.props.cardWidth}
-				imageUrl={listing.imageUrl}
+				imageUrl={listing.image_path}
 				status={listing.status}
 				cost={listing.cost}
 				year={listing.year}
 				condition={listing.condition}
 				verified={listing.verified}
-				name={listing.name}
+				name={listing.car_name}
 				passengers={listing.passengers}
 				resultClicked={this.resultClickHandler}
 			/>
 		));
-		console.log(this.props);
 		return <div className={styles.ResultsLister}>{resultList}</div>;
 	}
 }

@@ -12,7 +12,11 @@ const result = props => {
 				</p>
 			</div>
 			<div className={styles.imageBox}>
-				<img className={styles.img} src={props.imageUrl} alt="car" />
+				<img
+					className={styles.img}
+					src={`/images/${props.imageUrl}`}
+					alt="car"
+				/>
 			</div>
 			<p className={styles.nameText}>{props.name}</p>
 
