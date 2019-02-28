@@ -12,14 +12,17 @@ class BidBoard extends Component {
 	}
 
 	componentDidUpdate() {
-		if (!this.state.bidList.length) this.fetchData();
+		if (!this.state.bidList.length) this.fetchData(this.periodicUpdate);
 		if (this.props.uploadHappened) {
 			this.fetchData(this.props.uploadReset);
 		}
 	}
 
+	periodicUpdate = () => {
+		setInterval(this.fetchData, 1000);
+	};
+
 	fetchData = cb => {
-		console.log(this.props.listingId);
 		fetch(`/listing-bids/${this.props.listingId}`)
 			.then(res => res.json())
 			//

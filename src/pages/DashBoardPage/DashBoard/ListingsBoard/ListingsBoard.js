@@ -117,7 +117,7 @@ class listingsBoard extends Component {
 					<div className={styles.left}>
 						<p className={styles.number}>Car</p>
 						<p className={styles.push}>List Status</p>
-						<p className={styles.car}>Starting Value</p>
+						<p className={styles.car}>Asking Price</p>
 					</div>
 					<div className={styles.modify}>
 						<p className={styles.modify}>Modify</p>

@@ -12,7 +12,8 @@ class BidDisplay extends Component {
 		this.state = {
 			mountReloop: 1,
 			listingId: -1,
-			uploadDidHappen: false
+			uploadDidHappen: false,
+			startingPrice: 0
 		};
 	}
 

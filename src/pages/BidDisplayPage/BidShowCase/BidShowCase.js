@@ -78,7 +78,7 @@ class BidShowCase extends Component {
 							</p>
 						</div>
 						<div className={styles.info}>
-							<p className={styles.infoHeader}>HIGHEST BID</p>
+							<p className={styles.infoHeader}>Asking Price</p>
 							<p className={styles.infoText}>
 								{carListing.cost
 									? `$${carListing.cost}`
