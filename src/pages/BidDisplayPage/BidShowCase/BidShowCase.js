@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styles from "./BidShowCase.module.css";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-const baseServerUrl = "http://localhost:3001" || process.env.BASE_SEVER_URL;
 
 class BidShowCase extends Component {
 	constructor(props) {

@@ -5,6 +5,7 @@ module.exports = class Bid {
 		knex("bids")
 			.insert({
 				bid: req.body.bid,
+				user_name: req.decoded.username,
 				user_id: req.decoded.id,
 				listing_id: req.body.listingId
 			})

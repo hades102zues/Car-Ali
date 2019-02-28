@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./BidStrip.module.css";
+import { connect } from "react-redux";
 
 class BidStrip extends Component {
 	constructor(props) {
@@ -14,9 +15,27 @@ class BidStrip extends Component {
 	};
 
 	onBidSubmitHandler = event => {
+		fetch("/bid-upload", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + this.props.authToken
+			},
+			body: JSON.stringify({
+				bid: this.state.bidValue,
+				listingId: this.props.listingId
+			})
+		})
+			.then(res => res.json())
+			.then(data => {
+				alert("Bid Submitted");
+				this.props.uploaded();
+			})
+			.catch(err => alert("Error Submitting Bid"));
+		//setup a post call with authToken, listingId, bidvalue
+
 		//make call to server
 		event.preventDefault();
-		alert("Make Post to server");
 	};
 
 	render() {
@@ -51,4 +70,9 @@ class BidStrip extends Component {
 	}
 }
 
-export default BidStrip;
+const mapStateToProps = state => {
+	return {
+		authToken: state.login.token
+	};
+};
+export default connect(mapStateToProps)(BidStrip);
