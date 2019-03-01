@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
 		table.integer("passengers").notNull();
 		table.string("car_name").notNull();
 		table.text("image_path").notNull();
+		table.integer("closed").notNull();
 		table
 			.integer("user_id")
 			.references("id")

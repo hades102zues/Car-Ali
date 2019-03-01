@@ -22,6 +22,7 @@ class Lister extends Component {
 				verified={item.verified}
 				key={item.id}
 				deleteItem={this.props.deleteItem}
+				acceptItem={this.props.acceptItem}
 				showListingCard={this.props.show}
 			/>
 		));

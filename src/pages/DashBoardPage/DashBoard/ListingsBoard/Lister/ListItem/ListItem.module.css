@@ -35,6 +35,14 @@
 	display: flex;
 	justify-content: flex-end;
 }
+.acceptButton {
+	height: 3rem;
+	width: 4rem;
+	background-color: purple;
+	border-radius: 5px;
+	margin-right: 10px;
+	cursor: pointer;
+}
 .viewButton {
 	height: 3rem;
 	width: 4rem;
@@ -101,6 +109,9 @@
 		width: 2.4rem;
 	}
 	.deleteButton {
+		width: 2.4rem;
+	}
+	.acceptButton {
 		width: 2.4rem;
 	}
 }

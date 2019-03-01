@@ -90,6 +90,20 @@ class listingsBoard extends Component {
 			.catch(err => alert("Error Retrieving Listing Data"));
 	};
 
+	onAcceptItemHandler = listId => {
+		fetch("/listing-user-accept-bid", {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + this.props.authToken
+			},
+			method: "POST",
+			body: JSON.stringify({ listingId: listId })
+		})
+			.then(res => this.fetchData())
+
+			.catch(err => alert("Error Closing Bidding"));
+	};
+
 	render() {
 		const listCard = this.state.showListCard ? (
 			<ListerCard
@@ -125,6 +139,7 @@ class listingsBoard extends Component {
 				</div>
 				<Lister
 					listItems={this.state.listItems}
+					acceptItem={this.onAcceptItemHandler}
 					deleteItem={this.onDeleteItemHandler}
 					show={this.onListCardPopUpEdit}
 				/>
