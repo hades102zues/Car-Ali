@@ -44,9 +44,11 @@ module.exports = class Listing {
 			});
 	}
 
-	static updateOne(req, res, cb) {
-		knex("listings")
-			.update({
+	static updateOne(req, res, cb, preferedUpdateObj = null) {
+		let updateObj = {};
+
+		if (preferedUpdateObj === null) {
+			updateObj = {
 				status: parseInt(req.body.status),
 				year: parseInt(req.body.year),
 				condition: parseFloat(req.body.condition),
@@ -54,7 +56,14 @@ module.exports = class Listing {
 				cost: parseFloat(req.body.cost),
 				passengers: parseInt(req.body.passengers),
 				car_name: req.body.carName.toUpperCase()
-			})
+			};
+		}
+
+		if (preferedUpdateObj !== null) {
+			updateObj = preferedUpdateObj;
+		}
+		knex("listings")
+			.update(updateObj)
 			.where({ id: req.body.listingId, user_id: req.decoded.id })
 			.returning("id")
 			.then(result => cb(result))

@@ -29,6 +29,18 @@ exports.deleteListing = (req, res) => {
 	});
 };
 
+exports.postAcceptBid = (req, res) => {
+	console.log(req.body);
+	Listing.updateOne(
+		req,
+		res,
+		() => {
+			res.status(200).json({ message: "Bidding Closed!" });
+		},
+		{ closed: 1 }
+	);
+};
+
 //---unguarded
 
 exports.getFeaturedListings = (req, res) => {

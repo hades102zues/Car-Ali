@@ -17,4 +17,7 @@ router.patch("/listing-user", listingControllers.patchListing);
 //delete a listing
 router.delete("/listing-user", listingControllers.deleteListing);
 
+//updates a listing to close bidding
+router.post("/listing-user-accept-bid", listingControllers.postAcceptBid);
+
 module.exports = router;
