@@ -50,7 +50,7 @@ exports.getFeaturedListings = (req, res) => {
 exports.getSomeListings = (req, res) => {
 	Listing.getAll(req, res, results => {
 		const newResults = [];
-		for (let i = 0; i <= 19; i++) {
+		for (let i = results.length - 1; i >= results.length / 2; i--) {
 			newResults.push(results[i]);
 		}
 

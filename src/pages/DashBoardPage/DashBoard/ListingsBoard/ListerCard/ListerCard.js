@@ -46,7 +46,7 @@ class ListerCard extends Component {
 				{
 					type: "number",
 					name: "cost",
-					placeholder: "Car's value in BBDS"
+					placeholder: "Asking value in BBDS"
 				},
 				{
 					type: "number",

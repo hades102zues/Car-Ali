@@ -15,23 +15,24 @@ class BidStrip extends Component {
 	};
 
 	onBidSubmitHandler = event => {
-		fetch("/bid-upload", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: "Bearer " + this.props.authToken
-			},
-			body: JSON.stringify({
-				bid: this.state.bidValue,
-				listingId: this.props.listingId
+		if (this.state.bidValue > 0)
+			fetch("/bid-upload", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: "Bearer " + this.props.authToken
+				},
+				body: JSON.stringify({
+					bid: this.state.bidValue,
+					listingId: this.props.listingId
+				})
 			})
-		})
-			.then(res => res.json())
-			.then(data => {
-				// alert("Bid Submitted");
-				this.props.uploaded();
-			})
-			.catch(err => alert("Error Submitting Bid"));
+				.then(res => res.json())
+				.then(data => {
+					// alert("Bid Submitted");
+					this.props.uploaded();
+				})
+				.catch(err => alert("Error Submitting Bid"));
 		//setup a post call with authToken, listingId, bidvalue
 
 		//make call to server
