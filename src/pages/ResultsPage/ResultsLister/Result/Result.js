@@ -31,7 +31,7 @@ const result = props => {
 				</div>
 				<div className={styles.info}>
 					<p className={styles.infoHeader}>CONDITION</p>
-					<p className={styles.infoText}>{props.condition}</p>
+					<p className={styles.infoText}>{props.condition}/5</p>
 				</div>
 				<div className={styles.info}>
 					<p className={styles.infoHeader}>VERIFIED</p>
@@ -41,7 +41,7 @@ const result = props => {
 				</div>
 			</div>
 			<div className={styles.bidHighlight}>
-				<p className={styles.bidText}>HIGHEST BID</p>
+				<p className={styles.bidText}>ASKING PRICE</p>
 				<p className={styles.bidPrice}>
 					{props.cost ? `$${props.cost}` : "$X.XX"}
 				</p>

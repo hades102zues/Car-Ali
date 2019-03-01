@@ -6,7 +6,8 @@ class BidBoard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			bidList: []
+			bidList: [],
+			allowPeriodicFunction: true
 		};
 	}
 
@@ -18,8 +19,15 @@ class BidBoard extends Component {
 	}
 
 	periodicUpdate = () => {
-		setInterval(this.fetchData, 1000);
+		if (this.state.allowPeriodicFunction) {
+			const interval = setInterval(this.fetchData, 1000);
+			this.setState({ interval, allowPeriodicFunction: false });
+		}
 	};
+
+	componentWillUnmount() {
+		clearInterval(this.state.interval);
+	}
 
 	fetchData = cb => {
 		fetch(`/listing-bids/${this.props.listingId}`)
