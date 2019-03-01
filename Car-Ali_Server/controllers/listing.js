@@ -50,7 +50,7 @@ exports.getFeaturedListings = (req, res) => {
 exports.getSomeListings = (req, res) => {
 	Listing.getAll(req, res, results => {
 		const newResults = [];
-		for (let i = 0; i <= 19; i++) {
+		for (let i = results.length - 1; i >= results.length / 2; i--) {
 			newResults.push(results[i]);
 		}
 
@@ -72,10 +72,14 @@ exports.getCatalog = (req, res) => {
 
 exports.postCatalogQuery = (req, res) => {
 	Listing.getAll(req, res, results => {
-		const newResults = results.filter(listing =>
-			listing.car_name
-				.toLowerCase()
-				.includes(req.body.queryName.toLowerCase())
+		const newResults = results.filter(
+			listing =>
+				listing.car_name
+					.toLowerCase()
+					.includes(
+						req.body.searchResults.inputQuery.toLowerCase()
+					) &&
+				listing.status === parseInt(req.body.searchResults.indexQuery)
 		);
 
 		res.status(200).json({

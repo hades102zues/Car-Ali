@@ -9,7 +9,7 @@ const homePage = () => {
 			<Container>
 				<h2 className={styles.h2}>Featured</h2>
 				<div className={styles.featuredLister}>
-					<CarCardLister cardWidth="75vw" />
+					<CarCardLister cardWidth="75vw" featured />
 				</div>
 				<h4 className={styles.h4}>Listings</h4>
 				<div className={styles.lister}>

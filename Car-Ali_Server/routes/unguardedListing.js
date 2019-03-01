@@ -11,6 +11,9 @@ router.get("/some-results", listingControllers.getSomeListings);
 //get all catalog info
 router.get("/catalog", listingControllers.getCatalog);
 
+//retrieve a specific user listing in db
+router.post("/listing-user", listingControllers.getUserListing);
+
 //get search results for car name
 router.post("/catalog-query", listingControllers.postCatalogQuery);
 

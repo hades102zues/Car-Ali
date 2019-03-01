@@ -10,7 +10,7 @@ const carCard = props => {
 		>
 			<div className={styles.imageBox}>
 				<img
-					src={props.imageUrl}
+					src={`/images/${props.imageUrl}`}
 					className={styles.carImage}
 					alt="car_image"
 				/>
@@ -22,7 +22,7 @@ const carCard = props => {
 							? "CAR FOR SALE"
 							: "CAR FOR HIRE /dy"}
 					</p>
-					<p className={styles.infoText}>{props.cost}</p>
+					<p className={styles.infoText}>{`$${props.cost}`}</p>
 				</div>
 				<div className={styles.info}>
 					<p className={styles.infoHeader}>YEAR</p>

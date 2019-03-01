@@ -2,6 +2,8 @@ exports.up = function(knex, Promise) {
 	return knex.schema.createTable("bids", table => {
 		table.increments();
 		table.float("bid").notNull();
+		table.text("user_name").notNull();
+		table.text("user_path").notNull();
 		table
 			.integer("user_id")
 			.references("id")

@@ -7,24 +7,31 @@ const bodyParser = require("body-parser");
 const loginRoutes = require("./routes/login");
 const guardedlistingRoutes = require("./routes/guardedListing");
 const unguardedlistingRoutes = require("./routes/unguardedListing");
-const bidRoutes = require("./routes/bid");
+const guardedBidRoutes = require("./routes/guardedBid");
+const unguardedBidRoutes = require("./routes/unguardedBid");
 const authWare = require("./utility/authWare");
 const upload = require("./multerfile");
 const cors = require("cors");
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "public")));
+
 app.use(cors());
 
+//to serve files it MUST be an app.use
+//example to get an image.
+//http://localhost:3001/images/<..>.jpg
+//we DONT make use of none of this ../public/uploads/
+app.use("/images", express.static(path.join(__dirname, "public", "uploads")));
 app.use(loginRoutes);
 app.use(unguardedlistingRoutes);
+app.use(unguardedBidRoutes);
 
 app.use(authWare);
-app.use(bidRoutes);
+app.use(guardedBidRoutes);
 
 //the file is now accessible through req.file.
 //single takes the name of the field alloted to the file, uploaded in the form
-app.use(upload.single("car_img"), guardedlistingRoutes);
+app.use(upload.single("image"), guardedlistingRoutes);
 
 app.use((error, req, res, next) => {
 	console.log("Error Caught!");

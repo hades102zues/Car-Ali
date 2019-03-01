@@ -4,14 +4,14 @@ module.exports = class Listing {
 	static create(req, res, cb) {
 		knex("listings")
 			.insert({
-				status: req.body.status,
-				year: req.body.year,
-				condition: req.body.condition,
-				verified: req.body.verified,
-				cost: req.body.cost,
-				passengers: req.body.cost,
+				status: parseInt(req.body.status),
+				year: parseInt(req.body.year),
+				condition: parseFloat(req.body.condition),
+				verified: parseInt(req.body.verified),
+				cost: parseFloat(req.body.cost),
+				passengers: parseInt(req.body.passengers),
 				car_name: req.body.carName.toUpperCase(),
-				image_path: req.file.path,
+				image_path: req.file.filename,
 				user_id: req.decoded.id
 			})
 			.then(result => cb(result))
@@ -36,25 +36,26 @@ module.exports = class Listing {
 	static getOneUserListing(req, res, cb) {
 		knex("listings")
 			.select()
-			.where({ user_id: req.decoded.id, id: req.body.listingId })
+			// .where({ user_id: req.decoded.id, id: req.body.listingId })
+			.where({ id: req.body.listingId })
 			.then(results => cb(results))
 			.catch(err => {
-				res.status(400).json({ message: "Failed To Get User Data" });
+				res.status(400).json({ message: "Failed To Get Listing Data" });
 			});
 	}
 
 	static updateOne(req, res, cb) {
 		knex("listings")
 			.update({
-				status: req.body.status,
-				year: req.body.year,
-				condition: req.body.condition,
-				verified: req.body.verified,
-				cost: req.body.cost,
-				passengers: req.body.cost,
+				status: parseInt(req.body.status),
+				year: parseInt(req.body.year),
+				condition: parseFloat(req.body.condition),
+				verified: parseInt(req.body.verified),
+				cost: parseFloat(req.body.cost),
+				passengers: parseInt(req.body.passengers),
 				car_name: req.body.carName.toUpperCase()
 			})
-			.where({ id: req.body.listingId })
+			.where({ id: req.body.listingId, user_id: req.decoded.id })
 			.returning("id")
 			.then(result => cb(result))
 			.catch(err => {
