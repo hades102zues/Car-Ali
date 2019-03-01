@@ -57,7 +57,9 @@ exports.getFeaturedListings = (req, res) => {
 			listing =>
 				listing.year <= 2000 ||
 				(listing.status === 1 && listing.cost >= 10000) ||
-				(listing.cost >= 100 && listing.cost <= 600)
+				(listing.cost >= 100 &&
+					listing.cost <= 600 &&
+					listing.status === 0)
 		);
 
 		res.status(200).json({

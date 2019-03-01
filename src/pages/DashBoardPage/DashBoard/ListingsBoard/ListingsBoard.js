@@ -134,7 +134,7 @@ class listingsBoard extends Component {
 						<p className={styles.car}>Asking Price</p>
 					</div>
 					<div className={styles.modify}>
-						<p className={styles.modify}>Modify</p>
+						<p className={styles.modify}>Operations</p>
 					</div>
 				</div>
 				<Lister
