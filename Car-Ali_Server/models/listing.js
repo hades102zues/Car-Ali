@@ -12,7 +12,8 @@ module.exports = class Listing {
 				passengers: parseInt(req.body.passengers),
 				car_name: req.body.carName.toUpperCase(),
 				image_path: req.file.filename,
-				user_id: req.decoded.id
+				user_id: req.decoded.id,
+				closed: 0
 			})
 			.then(result => cb(result))
 			.catch(err => {

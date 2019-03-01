@@ -7,7 +7,8 @@ module.exports = class Bid {
 				bid: req.body.bid,
 				user_name: req.decoded.username,
 				user_id: req.decoded.id,
-				listing_id: req.body.listingId
+				listing_id: req.body.listingId,
+				won: 0
 			})
 			.then(result => cb(result))
 			.catch(err =>
