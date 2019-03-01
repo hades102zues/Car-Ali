@@ -36,6 +36,20 @@ class BidsBoard extends Component {
 			.catch(err => alert("Error Retrieving Bid Data"));
 	};
 
+	onDeleteItemHandler = bidId => {
+		fetch("/bid-removal", {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + this.props.authToken
+			},
+			method: "DELETE",
+			body: JSON.stringify({ bidId: bidId })
+		})
+			.then(res => this.fetchData())
+
+			.catch(err => alert("Error Retrieving Listing Data"));
+	};
+
 	render() {
 		return (
 			<div className={styles.bidsBoard}>
@@ -51,7 +65,10 @@ class BidsBoard extends Component {
 						<p className={styles.modify}>Modify</p>
 					</div>
 				</div>
-				<BidLister bidItems={this.state.bidItems} />
+				<BidLister
+					bidItems={this.state.bidItems}
+					deleteItem={this.onDeleteItemHandler}
+				/>
 			</div>
 		);
 	}

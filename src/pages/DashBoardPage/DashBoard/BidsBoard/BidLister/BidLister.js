@@ -4,7 +4,13 @@ import BidItem from "./BidItem/BidItem";
 
 const bidLister = props => {
 	const bidItems = props.bidItems.map(bid => (
-		<BidItem key={bid.id} listingId={bid.listing_id} cost={bid.bid} />
+		<BidItem
+			key={bid.id}
+			listingId={bid.listing_id}
+			cost={bid.bid}
+			bidId={bid.id}
+			deleteItem={props.deleteItem}
+		/>
 	));
 
 	return <div className={styles.BidLister}>{bidItems}</div>;

@@ -76,7 +76,7 @@ module.exports = class Bid {
 	static delete(req, res, cb) {
 		knex("bids")
 			.del()
-			.where({ user_id: req.decoded.id })
+			.where({ user_id: req.decoded.id, id: req.body.bidId })
 			.then(result => cb(result))
 			.catch(err =>
 				res.status(400).json({
