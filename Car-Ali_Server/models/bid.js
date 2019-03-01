@@ -65,7 +65,7 @@ module.exports = class Bid {
 	static expUpdateSomeBidToWon(bidId, res, cb) {
 		knex("bids")
 			.update({ won: 1 })
-			.where({ bid: bidId })
+			.where({ id: bidId })
 			.then(results => cb(results))
 			.catch(err =>
 				res.status(400).json({ message: "Failed To Close Bidding" })

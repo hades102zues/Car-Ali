@@ -31,13 +31,19 @@ exports.deleteListing = (req, res) => {
 };
 
 exports.postAcceptBid = (req, res) => {
-	console.log(req.body);
 	Listing.updateOne(
 		req,
 		res,
 		() => {
-			//get bid id of the largest bid and set won to 1
-			res.status(200).json({ message: "Bidding Closed!" });
+			//get bid id of the largest bid
+			Bid.expGetAllListingBids(req.body.listingId, res, results => {
+				const highestBidId = results[0].id;
+
+				//now set that bid to won
+				Bid.expUpdateSomeBidToWon(highestBidId, res, () => {
+					res.status(200).json({ message: "Bidding Closed!" });
+				});
+			});
 		},
 		{ closed: 1 }
 	);
