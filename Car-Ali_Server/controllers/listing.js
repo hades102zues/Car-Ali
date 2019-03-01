@@ -1,4 +1,5 @@
-const Listing = require("../models/Listing");
+const Listing = require("../models/listing");
+const Bid = require("../models/bid");
 
 //---guarded
 exports.postListing = (req, res) => {
@@ -35,6 +36,7 @@ exports.postAcceptBid = (req, res) => {
 		req,
 		res,
 		() => {
+			//get bid id of the largest bid and set won to 1
 			res.status(200).json({ message: "Bidding Closed!" });
 		},
 		{ closed: 1 }

@@ -51,6 +51,28 @@ module.exports = class Bid {
 			);
 	}
 
+	//*****
+	static expGetAllListingBids(listingId, res, cb) {
+		knex("bids")
+			.select()
+			.where({ listing_id: listingId })
+			.orderBy("bid", "desc")
+			.then(results => cb(results))
+			.catch(err =>
+				res.status(400).json({ message: "Failed To Close Bidding" })
+			);
+	}
+	static expUpdateSomeBidToWon(bidId, res, cb) {
+		knex("bids")
+			.update({ won: 1 })
+			.where({ bid: bidId })
+			.then(results => cb(results))
+			.catch(err =>
+				res.status(400).json({ message: "Failed To Close Bidding" })
+			);
+	}
+	//****
+
 	static delete(req, res, cb) {
 		knex("bids")
 			.del()
