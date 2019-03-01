@@ -45,6 +45,17 @@ module.exports = class Listing {
 			});
 	}
 
+	static epxGetOneUserListing(req, res, cb) {
+		knex("listings")
+			.select()
+			// .where({ user_id: req.decoded.id, id: req.body.listingId })
+			.where({ id: req.params.listingId })
+			.then(results => cb(results))
+			.catch(err => {
+				res.status(400).json({ message: "Failed To Get Listing Data" });
+			});
+	}
+
 	static updateOne(req, res, cb, preferedUpdateObj = null) {
 		let updateObj = {};
 

@@ -8,9 +8,6 @@ router.post("/listing", listingControllers.postListing);
 //get all user listings in db
 router.get("/listings-user", listingControllers.getUserListings);
 
-// //get a specific user listing in db
-// router.get("/listing-user", listingControllers.getUserListing);
-
 //update a listing
 router.patch("/listing-user", listingControllers.patchListing);
 
@@ -19,5 +16,8 @@ router.delete("/listing-user", listingControllers.deleteListing);
 
 //updates a listing to close bidding
 router.post("/listing-user-accept-bid", listingControllers.postAcceptBid);
+
+//retrieve a specific user listing in db
+router.post("/listing-user", listingControllers.getUserListing);
 
 module.exports = router;

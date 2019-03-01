@@ -18,6 +18,12 @@ exports.getUserListing = (req, res) => {
 		res.status(200).json({ message: "Listing", result });
 	});
 };
+
+exports.expGetUserListing = (req, res) => {
+	Listing.epxGetOneUserListing(req, res, result => {
+		res.status(200).json({ message: "Listing", result });
+	});
+};
 exports.patchListing = (req, res) => {
 	Listing.updateOne(req, res, () => {
 		res.status(200).json({ message: "Update Succesfull" });

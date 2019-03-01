@@ -1,20 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import styles from "./BidLister.module.css";
 import BidItem from "./BidItem/BidItem";
 
-class BidLister extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
+const bidLister = props => {
+	const bidItems = props.bidItems.map(bid => (
+		<BidItem key={bid.id} listingId={bid.listing_id} cost={bid.bid} />
+	));
 
-	render() {
-		return (
-			<div className={styles.BidLister}>
-				<BidItem carName="BMW Couper" cost={50} />
-			</div>
-		);
-	}
-}
+	return <div className={styles.BidLister}>{bidItems}</div>;
+};
 
-export default BidLister;
+export default bidLister;
