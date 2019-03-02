@@ -12,7 +12,7 @@ class ProfileBoard extends Component {
 	}
 
 	componentDidMount() {
-		//redux only delivers the authToken after the component mounts this.setState({ userDetails: data })
+		//redux only delivers the authToken after the component mounts
 		// I used this to trigger a rerender so that i might call the fetch
 		//in componentDidupdate
 		this.setState({ initiateReloop: 2 });
@@ -28,16 +28,30 @@ class ProfileBoard extends Component {
 			method: "GET"
 		})
 			.then(res => res.json())
-			.then(data => console.log(data))
+			.then(data => this.setState({ userDetails: data.userInfo }))
 			.catch(err => alert("Error Occured!"));
 	};
 
 	render() {
-		return (
-			<div className={styles.profileBoard}>
-				<p>I am profileBoard</p>
-			</div>
-		);
+		let output = null;
+
+		if (this.state.userDetails) {
+			output = (
+				<div className={styles.profileBoard}>
+					<p className={styles.item}>
+						Username: {this.state.userDetails.username}
+					</p>
+					<p className={styles.item}>
+						FullName: {this.state.userDetails.name}
+					</p>
+					<p className={styles.item}>
+						Email: {this.state.userDetails.email}
+					</p>
+				</div>
+			);
+		}
+
+		return output;
 	}
 }
 
