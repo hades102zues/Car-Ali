@@ -33,7 +33,7 @@ app.use(unguardedBidRoutes);
 
 app.use(authWare);
 
-app.use(guardedLoginRoutes);
+app.use(upload.single("image"), guardedLoginRoutes);
 app.use(guardedBidRoutes);
 
 //the file is now accessible through req.file.

@@ -74,8 +74,15 @@ exports.postLogin = (req, res) => {
 	});
 };
 
+//**guarded
 exports.getUserDetails = (req, res) => {
 	delete req.decoded.id;
 	delete req.decoded.iat;
 	res.status(200).json({ userInfo: req.decoded });
 };
+
+exports.postUserImage = (req, res) => {
+	console.log(req.file);
+};
+
+//**

@@ -22,6 +22,21 @@ class ProfileBoard extends Component {
 		if (this.state.userDetails === null) this.fetchData();
 	}
 
+	onImageChange = event => {
+		this.submitImage(event.target.files["0"]);
+	};
+
+	submitImage = file => {
+		const formData = new FormData();
+
+		formData.append("image", file);
+		fetch("/upload-user-image", {
+			headers: { Authorization: "Bearer " + this.props.authToken },
+			method: "POST",
+			body: formData
+		}).catch(err => alert("Error Uploading Image"));
+	};
+
 	fetchData = () => {
 		fetch("/user-details", {
 			headers: { Authorization: "Bearer " + this.props.authToken },
@@ -47,6 +62,11 @@ class ProfileBoard extends Component {
 					<p className={styles.item}>
 						Email: {this.state.userDetails.email}
 					</p>
+
+					<input
+						type="file"
+						onChange={event => this.onImageChange(event)}
+					/>
 				</div>
 			);
 		}
