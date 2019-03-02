@@ -75,5 +75,7 @@ exports.postLogin = (req, res) => {
 };
 
 exports.getUserDetails = (req, res) => {
+	delete req.decoded.id;
+	delete req.decoded.iat;
 	res.status(200).json({ userInfo: req.decoded });
 };

@@ -26,11 +26,13 @@ app.use(cors());
 //http://localhost:3001/images/<..>.jpg
 //we DONT make use of none of this ../public/uploads/
 app.use("/images", express.static(path.join(__dirname, "public", "uploads")));
+
 app.use(unguargedLoginRoutes);
 app.use(unguardedlistingRoutes);
 app.use(unguardedBidRoutes);
 
 app.use(authWare);
+
 app.use(guardedLoginRoutes);
 app.use(guardedBidRoutes);
 
