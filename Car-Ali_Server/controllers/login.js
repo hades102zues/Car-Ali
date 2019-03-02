@@ -92,4 +92,13 @@ exports.postUserImage = (req, res) => {
 	);
 };
 
+exports.getUserImage = (req, res) => {
+	User.authedGetOneGetOne(req, res, result => {
+		res.status(200).json({
+			message: "User profile image path",
+			filename: result.profile_img
+		});
+	});
+};
+
 //**

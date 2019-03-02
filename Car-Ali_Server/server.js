@@ -22,9 +22,9 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //to serve files it MUST be an app.use
-//example to get an image.
-//http://localhost:3001/images/<..>.jpg
-//we DONT make use of none of this ../public/uploads/
+// to get an image we do
+//http://localhost:3001/images/<some file path with the assumption made that we are already in the uploads folder>
+//AND SO we do not got doing this //http://localhost:3001/images/public/uploads/<...>
 app.use("/images", express.static(path.join(__dirname, "public", "uploads")));
 
 app.use(unguargedLoginRoutes);
