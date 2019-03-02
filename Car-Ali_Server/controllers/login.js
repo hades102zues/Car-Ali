@@ -1,5 +1,6 @@
 const hasher = require("bcryptjs");
 const User = require("../models/users");
+const Bid = require("../models/bid");
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET || "Kil3rQue3nbiT5D4Dust";
 
@@ -86,7 +87,15 @@ exports.postUserImage = (req, res) => {
 		req,
 		res,
 		() => {
-			res.status(200).json({ message: "Image upload succesful" });
+			//update bid with user details.
+			Bid.expUpdateBidsUserDetails(
+				req,
+				res,
+				() => {
+					res.status(200).json({ message: "Image upload succesful" });
+				},
+				{ user_path: req.file.filename }
+			);
 		},
 		{ profile_img: req.file.filename }
 	);

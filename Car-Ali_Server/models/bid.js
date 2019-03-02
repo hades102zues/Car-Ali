@@ -85,4 +85,14 @@ module.exports = class Bid {
 				})
 			);
 	}
+
+	//
+	static expUpdateBidsUserDetails(req, res, cb, updObj = null) {
+		if (updObj === null) return;
+		knex("bids")
+			.update(updObj)
+			.where({ user_id: req.decoded.id })
+			.then(results => cb(results))
+			.catch(err => null);
+	}
 };
