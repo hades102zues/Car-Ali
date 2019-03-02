@@ -73,3 +73,7 @@ exports.postLogin = (req, res) => {
 		}
 	});
 };
+
+exports.getUserDetails = (req, res) => {
+	res.status(200).json({ userInfo: req.decoded });
+};

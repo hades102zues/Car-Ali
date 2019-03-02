@@ -4,11 +4,15 @@ const app = express();
 const port = process.env.PORT || 3001;
 const bodyParser = require("body-parser");
 
-const loginRoutes = require("./routes/login");
+const unguargedLoginRoutes = require("./routes/unguardedLogin");
+const guardedLoginRoutes = require("./routes/guardedLogin");
+
 const guardedlistingRoutes = require("./routes/guardedListing");
 const unguardedlistingRoutes = require("./routes/unguardedListing");
+
 const guardedBidRoutes = require("./routes/guardedBid");
 const unguardedBidRoutes = require("./routes/unguardedBid");
+
 const authWare = require("./utility/authWare");
 const upload = require("./multerfile");
 const cors = require("cors");
@@ -22,11 +26,12 @@ app.use(cors());
 //http://localhost:3001/images/<..>.jpg
 //we DONT make use of none of this ../public/uploads/
 app.use("/images", express.static(path.join(__dirname, "public", "uploads")));
-app.use(loginRoutes);
+app.use(unguargedLoginRoutes);
 app.use(unguardedlistingRoutes);
 app.use(unguardedBidRoutes);
 
 app.use(authWare);
+app.use(guardedLoginRoutes);
 app.use(guardedBidRoutes);
 
 //the file is now accessible through req.file.
