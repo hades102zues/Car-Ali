@@ -82,7 +82,14 @@ exports.getUserDetails = (req, res) => {
 };
 
 exports.postUserImage = (req, res) => {
-	console.log(req.file);
+	User.update(
+		req,
+		res,
+		() => {
+			res.status(200).json({ message: "Image upload succesful" });
+		},
+		{ profile_img: req.file.filename }
+	);
 };
 
 //**
