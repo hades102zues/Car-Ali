@@ -26,6 +26,26 @@ module.exports = class User {
 			.then(result => cb(result))
 			.catch(err => console.log("Error getting user"));
 	}
+
+	//
+	static authedGetOneGetOne(req, res, cb) {
+		knex("users")
+			.select()
+			.where({ id: req.decoded.id })
+			.first()
+			.then(result => cb(result))
+			.catch(err => console.log("Error getting user"));
+	}
+
+	static update(req, res, cb, updObject = null) {
+		if (updObject === null) return;
+
+		knex("users")
+			.update(updObject)
+			.where({ id: req.decoded.id })
+			.then(result => cb(result))
+			.catch(err => console.log("Error getting user"));
+	}
 	//update
 
 	//delete

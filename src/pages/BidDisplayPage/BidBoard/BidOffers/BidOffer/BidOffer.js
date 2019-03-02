@@ -9,7 +9,7 @@ const bidOffer = props => {
 					<div className={styles.imageBox}>
 						<img
 							className={styles.img}
-							src={props.userImageUrl}
+							src={`/images/${props.userImageUrl}`}
 							alt="usr_image"
 						/>
 					</div>

@@ -12,7 +12,8 @@ module.exports = class Listing {
 				passengers: parseInt(req.body.passengers),
 				car_name: req.body.carName.toUpperCase(),
 				image_path: req.file.filename,
-				user_id: req.decoded.id
+				user_id: req.decoded.id,
+				closed: 0
 			})
 			.then(result => cb(result))
 			.catch(err => {
@@ -44,9 +45,22 @@ module.exports = class Listing {
 			});
 	}
 
-	static updateOne(req, res, cb) {
+	static epxGetOneUserListing(req, res, cb) {
 		knex("listings")
-			.update({
+			.select()
+			// .where({ user_id: req.decoded.id, id: req.body.listingId })
+			.where({ id: req.params.listingId })
+			.then(results => cb(results))
+			.catch(err => {
+				res.status(400).json({ message: "Failed To Get Listing Data" });
+			});
+	}
+
+	static updateOne(req, res, cb, preferedUpdateObj = null) {
+		let updateObj = {};
+
+		if (preferedUpdateObj === null) {
+			updateObj = {
 				status: parseInt(req.body.status),
 				year: parseInt(req.body.year),
 				condition: parseFloat(req.body.condition),
@@ -54,7 +68,14 @@ module.exports = class Listing {
 				cost: parseFloat(req.body.cost),
 				passengers: parseInt(req.body.passengers),
 				car_name: req.body.carName.toUpperCase()
-			})
+			};
+		}
+
+		if (preferedUpdateObj !== null) {
+			updateObj = preferedUpdateObj;
+		}
+		knex("listings")
+			.update(updateObj)
 			.where({ id: req.body.listingId, user_id: req.decoded.id })
 			.returning("id")
 			.then(result => cb(result))

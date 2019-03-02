@@ -11,7 +11,7 @@ const navigation = props => {
 
 	const loggedInConfigs = [
 		{ to: "/results", navName: "CATALOG" },
-		{ to: "/user/dashboard", navName: "PROFILE" },
+		{ to: "/user/dashboard", navName: "DASHBOARD" },
 		{ to: "/logout", navName: "LOGOUT" }
 	];
 

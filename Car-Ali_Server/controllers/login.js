@@ -1,5 +1,6 @@
 const hasher = require("bcryptjs");
 const User = require("../models/users");
+const Bid = require("../models/bid");
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET || "Kil3rQue3nbiT5D4Dust";
 
@@ -73,3 +74,40 @@ exports.postLogin = (req, res) => {
 		}
 	});
 };
+
+//**guarded
+exports.getUserDetails = (req, res) => {
+	delete req.decoded.id;
+	delete req.decoded.iat;
+	res.status(200).json({ userInfo: req.decoded });
+};
+
+exports.postUserImage = (req, res) => {
+	User.update(
+		req,
+		res,
+		() => {
+			//update bid with user details.
+			Bid.expUpdateBidsUserDetails(
+				req,
+				res,
+				() => {
+					res.status(200).json({ message: "Image upload succesful" });
+				},
+				{ user_path: req.file.filename }
+			);
+		},
+		{ profile_img: req.file.filename }
+	);
+};
+
+exports.getUserImage = (req, res) => {
+	User.authedGetOneGetOne(req, res, result => {
+		res.status(200).json({
+			message: "User profile image path",
+			filename: result.profile_img
+		});
+	});
+};
+
+//**

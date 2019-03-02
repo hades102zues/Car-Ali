@@ -1,4 +1,5 @@
-const Listing = require("../models/Listing");
+const Listing = require("../models/listing");
+const Bid = require("../models/bid");
 
 //---guarded
 exports.postListing = (req, res) => {
@@ -17,6 +18,12 @@ exports.getUserListing = (req, res) => {
 		res.status(200).json({ message: "Listing", result });
 	});
 };
+
+exports.expGetUserListing = (req, res) => {
+	Listing.epxGetOneUserListing(req, res, result => {
+		res.status(200).json({ message: "Listing", result });
+	});
+};
 exports.patchListing = (req, res) => {
 	Listing.updateOne(req, res, () => {
 		res.status(200).json({ message: "Update Succesfull" });
@@ -29,6 +36,25 @@ exports.deleteListing = (req, res) => {
 	});
 };
 
+exports.postAcceptBid = (req, res) => {
+	Listing.updateOne(
+		req,
+		res,
+		() => {
+			//get bid id of the largest bid
+			Bid.expGetAllListingBids(req.body.listingId, res, results => {
+				const highestBidId = results[0].id;
+
+				//now set that bid to won
+				Bid.expUpdateSomeBidToWon(highestBidId, res, () => {
+					res.status(200).json({ message: "Bidding Closed!" });
+				});
+			});
+		},
+		{ closed: 1 }
+	);
+};
+
 //---unguarded
 
 exports.getFeaturedListings = (req, res) => {
@@ -37,7 +63,9 @@ exports.getFeaturedListings = (req, res) => {
 			listing =>
 				listing.year <= 2000 ||
 				(listing.status === 1 && listing.cost >= 10000) ||
-				(listing.cost >= 100 && listing.cost <= 600)
+				(listing.cost >= 100 &&
+					listing.cost <= 600 &&
+					listing.status === 0)
 		);
 
 		res.status(200).json({

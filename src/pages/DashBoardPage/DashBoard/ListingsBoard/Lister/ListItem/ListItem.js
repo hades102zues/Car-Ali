@@ -14,6 +14,16 @@ const listItem = props => {
 			</div>
 			<div className={styles.right}>
 				<div
+					className={styles.acceptButton}
+					onClick={() => props.acceptItem(props.id)}
+				>
+					<img
+						src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABuwAAAbsBOuzj4gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAF6SURBVEiJzZXLSsNgEIUT6VLxAm50ISKCS4sbBZVSq2+ktiAU9DEEA4IgFFcqIliC4COISh/AG1LXCvZzcyITyLUl4EBIzuTMnPwzf+Z3nP9kyPLEDBX1MZkEABeoAR7QMf4OcARUAbcvZWAO8Em3NjCbN/k60FWCF2AXKJukZaABvAp/AKtZky8Anwo8BobNu1CTgRHgRO4uMJ+W3AXuFHAa1Fe1vjArOAcqJqYl/21iT4BNEZ+BUfnqQC+i9j/AtjhjplzVJAFPpD3hLSX/Uh9mdNWBb4lsiNtU7GGSwEPQROFL4Z0IbiMol/CS8H1U4jSbEs8H2nqeTgtyHMcpxS4nbD3dS+Y518gIVvIk8UXh6wwluhIO/pPHJAFPpLgmT+qyTa6J21RsYpMrIg2yTdfSyuSL2M+PdpOYXAF2VLSAcfPub3cITwBncqePChNoh90bsA8smxWsAAfAu3D2YWdEihvXRiR04Jikgx84MYKhHmSxws/kwu0Xl95lIIfwA8UAAAAASUVORK5CYII="
+						className={styles.img}
+						alt="bulls-eye_icon"
+					/>
+				</div>
+				<div
 					className={styles.viewButton}
 					onClick={() => props.history.push(`/bid-view/${props.id}`)}
 				>
