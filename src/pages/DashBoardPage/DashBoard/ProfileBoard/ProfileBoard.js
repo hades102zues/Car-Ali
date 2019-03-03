@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "./ProfileBoard.module.css";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class ProfileBoard extends Component {
 	constructor(props) {
@@ -34,7 +35,9 @@ class ProfileBoard extends Component {
 			headers: { Authorization: "Bearer " + this.props.authToken },
 			method: "POST",
 			body: formData
-		}).catch(err => alert("Error Uploading Image"));
+		})
+			.then(res => this.props.history.push("/user/dashboard"))
+			.catch(err => alert("Error Uploading Image"));
 	};
 
 	fetchData = () => {
@@ -81,4 +84,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps)(ProfileBoard);
+export default connect(mapStateToProps)(withRouter(ProfileBoard));

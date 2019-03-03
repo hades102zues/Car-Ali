@@ -52,7 +52,6 @@ class BidShowCase extends Component {
 		let output = null;
 		if (carListings.length) {
 			const carListing = carListings[0];
-			console.log(carListing.image_path);
 
 			output = (
 				<div>

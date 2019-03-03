@@ -49,6 +49,7 @@ class BidOffers extends Component {
 				userName={bid.user_name}
 				bid={bid.bid}
 				userImageUrl={bid.user_path}
+				won={bid.won}
 			/>
 		));
 

@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
 		table.increments();
 		table.float("bid").notNull();
 		table.text("user_name").notNull();
-		table.text("user_path").notNull();
+		table.text("user_path");
 		table
 			.integer("user_id")
 			.references("id")

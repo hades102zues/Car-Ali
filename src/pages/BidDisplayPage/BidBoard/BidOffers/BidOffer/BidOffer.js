@@ -3,7 +3,11 @@ import styles from "./BidOffer.module.css";
 
 const bidOffer = props => {
 	return (
-		<div className={styles.bidOffer}>
+		<div
+			className={styles.bidOffer}
+			style={{ backgroundColor: props.won ? "green" : null }}
+		>
+			<p className={styles.winner}>WINNER</p>
 			<div className={styles.placerAid}>
 				<div className={styles.userData}>
 					<div className={styles.imageBox}>
