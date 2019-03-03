@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 const listItem = props => {
 	return (
 		<div className={styles.listItem}>
+			{props.closed ? <p className={styles.closed}>CLOSED</p> : null}
 			<div className={styles.left}>
 				<p className={styles.carName}>{props.carName}</p>
 				<p className={styles.push}>
