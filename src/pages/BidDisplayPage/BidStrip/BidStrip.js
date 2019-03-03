@@ -15,6 +15,10 @@ class BidStrip extends Component {
 	};
 
 	onBidSubmitHandler = event => {
+		if (!this.props.allowBidding) {
+			event.preventDefault();
+			return alert("Bidding For This Item Has Concluded");
+		}
 		if (this.state.bidValue > 0)
 			fetch("/bid-upload", {
 				method: "POST",
@@ -62,7 +66,11 @@ class BidStrip extends Component {
 							onChange={this.onInputChangeHandler}
 						/>
 					</div>
-					<button type="submit" className={styles.bidButton}>
+					<button
+						type="submit"
+						className={styles.bidButton}
+						// disabled={!this.props.allowBidding}
+					>
 						PLACE YOUR BID
 					</button>
 				</form>
