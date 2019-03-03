@@ -13,13 +13,18 @@ class BidDisplay extends Component {
 			mountReloop: 1,
 			listingId: -1,
 			uploadDidHappen: false,
-			startingPrice: 0
+			allowUserToBid: null
+			//startingPrice: 0
 		};
 	}
 
 	componentDidMount() {
 		this.setState({ mountReloop: 2 });
 	}
+
+	determineIfUserCanBid = bidStatus => {
+		this.setState({ allowUserToBid: !bidStatus ? true : false });
+	};
 
 	bidWasUploaded = () => {
 		this.setState({ uploadDidHappen: true });
@@ -42,7 +47,9 @@ class BidDisplay extends Component {
 	render() {
 		return (
 			<div>
-				<BidShowCase />
+				<BidShowCase
+					determineIfUserCanBid={this.determineIfUserCanBid}
+				/>
 				<Container>
 					<div className={styles.bidPlacer}>
 						<BidBoard
@@ -53,6 +60,7 @@ class BidDisplay extends Component {
 						<BidStrip
 							listingId={this.state.listingId}
 							uploaded={this.bidWasUploaded}
+							allowBidding={this.state.allowUserToBid}
 						/>
 					</div>
 				</Container>

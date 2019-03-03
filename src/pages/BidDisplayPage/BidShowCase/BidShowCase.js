@@ -43,7 +43,11 @@ class BidShowCase extends Component {
 				})
 			})
 				.then(res => res.json())
-				.then(data => this.setState({ carListings: data.result }))
+				.then(data => {
+					this.setState({ carListings: data.result });
+
+					this.props.determineIfUserCanBid(data.result[0].closed);
+				})
 				.catch(err => alert("Failed to get info for showcase"));
 	}
 
@@ -52,7 +56,6 @@ class BidShowCase extends Component {
 		let output = null;
 		if (carListings.length) {
 			const carListing = carListings[0];
-			console.log(carListing.image_path);
 
 			output = (
 				<div>

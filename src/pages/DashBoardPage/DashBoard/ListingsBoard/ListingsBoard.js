@@ -99,7 +99,10 @@ class listingsBoard extends Component {
 			method: "POST",
 			body: JSON.stringify({ listingId: listId })
 		})
-			.then(res => alert("Bidding Closed"))
+			.then(res => {
+				alert("Bidding Closed");
+				this.fetchData();
+			})
 
 			.catch(err => alert("Error Closing Bidding"));
 	};

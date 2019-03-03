@@ -2,6 +2,19 @@
 	display: flex;
 	background-color: #eceff1;
 	padding: 6px 25px;
+	position: relative;
+}
+
+.closed {
+	color: white;
+	background-color: red;
+	position: absolute;
+	top: 50%;
+	transform: translateX(-50%);
+	left: 50%;
+	transform: translateY(-50%);
+	font-size: 2.5rem;
+	font-weight: bold;
 }
 
 .left {
