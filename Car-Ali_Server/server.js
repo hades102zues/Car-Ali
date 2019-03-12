@@ -3,15 +3,15 @@ const path = require("path");
 const app = express();
 const port = process.env.PORT || 3001;
 const bodyParser = require("body-parser");
+const helmet = require("helmet");
 
 const unguargedLoginRoutes = require("./routes/unguardedLogin");
-const guardedLoginRoutes = require("./routes/guardedLogin");
-
-const guardedlistingRoutes = require("./routes/guardedListing");
 const unguardedlistingRoutes = require("./routes/unguardedListing");
-
-const guardedBidRoutes = require("./routes/guardedBid");
 const unguardedBidRoutes = require("./routes/unguardedBid");
+
+const guardedLoginRoutes = require("./routes/guardedLogin");
+const guardedlistingRoutes = require("./routes/guardedListing");
+const guardedBidRoutes = require("./routes/guardedBid");
 
 const authWare = require("./utility/authWare");
 const upload = require("./multerfile");
@@ -20,6 +20,7 @@ const cors = require("cors");
 app.use(bodyParser.json());
 
 app.use(cors());
+app.use(helmet());
 
 //to serve files it MUST be an app.use
 // to get an image we do

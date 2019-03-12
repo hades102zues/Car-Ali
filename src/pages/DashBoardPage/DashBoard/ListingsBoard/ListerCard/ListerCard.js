@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styles from "./ListerCard.module.css";
 import { connect } from "react-redux";
+import * as yup from "yup";
+
 import { Form, Field, withFormik, ErrorMessage } from "formik";
 
 class ListerCard extends Component {
@@ -133,9 +135,16 @@ class ListerCard extends Component {
 			<div className={styles.ListerCard}>
 				<Form>
 					{fieldItems}
+
+					<ErrorMessage
+						name="imageUrl"
+						render={msg => (
+							<div className={styles.authmessagebox}>{msg}</div>
+						)}
+					/>
 					<input
 						type="file"
-						name="imageUrl"
+						name="image"
 						onChange={event => {
 							//necessary inorder to capture the FILE object
 							this.props.setFieldValue(
@@ -168,9 +177,19 @@ class ListerCard extends Component {
 	}
 }
 
+// const formValidation = yup.object().shape({
+// 	status: yup.required("This field is required"),
+// 	carName: yup.required("This field is required"),
+// 	year: yup.required("This field is required"),
+// 	condition: yup.required("This field is required"),
+// 	verified: yup.required("This field is required"),
+// 	cost: yup.required("This field is required"),
+// 	passengers: yup.required("This field is required"),
+// 	image: yup.required("This field is required")
+// });
+
 const formikComp = withFormik({
 	mapPropsToValues: props => {
-		console.log(props);
 		let itemToTreturn = {};
 		if (props.isEditMode) {
 			itemToTreturn = {
@@ -217,6 +236,7 @@ const formikComp = withFormik({
 			})
 			.catch(err => alert("Error Uploading Listing", err));
 	}
+	//validationSchema: formValidation
 })(ListerCard);
 
 const mapStateToProps = state => {

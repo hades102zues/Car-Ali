@@ -28,7 +28,10 @@ class DashBoardNavigaiton extends Component {
 			method: "GET"
 		})
 			.then(res => res.json())
-			.then(data => this.setState({ image: data.filename }))
+			.then(data => {
+				if (data.filename === null) this.setState({ image: "" });
+				else this.setState({ image: data.filename });
+			})
 			.catch(err => alert("Error Retrieving Listing Data"));
 	};
 

@@ -32,16 +32,7 @@ class BidShowCase extends Component {
 
 	componentDidUpdate() {
 		if (!this.state.carListings.length)
-			fetch("/listing-user", {
-				method: "POST",
-				headers: {
-					Authorization: "Bearer " + this.props.authToken,
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify({
-					listingId: this.props.match.params.listingId
-				})
-			})
+			fetch(`/listing-user/${this.props.match.params.listingId}`)
 				.then(res => res.json())
 				.then(data => {
 					this.setState({ carListings: data.result });

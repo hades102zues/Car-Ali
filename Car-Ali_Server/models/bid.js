@@ -1,4 +1,4 @@
-const knex = require("../knexfile");
+const knex = require("../knexExportFile");
 
 module.exports = class Bid {
 	static create(req, res, cb) {
